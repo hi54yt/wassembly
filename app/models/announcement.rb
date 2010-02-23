@@ -4,7 +4,7 @@ class Announcement < ActiveRecord::Base
       if hide_time.nil?
         find(:all)
       else
-        find(:all, :conditions => ["updated_at > ? OR starts_at > ?", hide_time, hide_time])
+        find(:all, :conditions => ["starts_at > ?", hide_time, hide_time])
       end
     end
   end
