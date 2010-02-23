@@ -1,0 +1,42 @@
+<% title @proposition.title, false %>
+
+<% if can? :manage, Proposition %>
+	<% content_for :sidebar do %>
+		<%= admin_links @proposition %>
+	<% end %>
+<% end %>
+
+<%= render '/shared/proposition', :object => @proposition %>
+
+<% unless @comments.empty? %>
+	<div id="comments">
+		<h3>Comentarios</h3>
+		<%= render(:partial => "/shared/comment", :collection => @comments) %>
+		<div id="comments_pagination">
+			<%= will_paginate @comments %>
+		</div>
+	</div>
+<% end %>
+
+<% if can? :create, Comment %>
+<div id="create_comment">
+	<div id="add_comment_form">
+		<h3>Añadir comentario</h3>
+		<% form_for [@proposition, @proposition.comments.build] do |f| %>
+			<p>	
+		    	<%= f.text_area :body, :cols => 75, :rows => 14, :class => 'markdown', :id=>"wmd-input" %> <br/>
+				<%= f.submit "Enviar" %>
+			</p>
+			<div id="editor_preview">
+				<h3>Previsualización del Comentario</h3>
+				<div id="mark_preview"></div>
+			</div>
+		<% end %>
+	</div>
+</div>
+<% else %>
+<div id="register_notice">
+	<p><%= link_to "Regístrate", new_user_session_url %> para añadir un comentario.</p>
+</div>
+<% end %>
+

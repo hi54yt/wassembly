@@ -1,0 +1,41 @@
+development:
+	session_secret: VERY LONG HEXADECIMAL STRING HERE
+    interest_threshold: 30
+    senate_size: 20
+    tractis_api_key: 
+    smtp_server: smtp.gmail.com
+    smtp_port: 587
+    email_domain: wasamblea.org
+    email_username:
+    email_password: 
+test:
+   session_secret: VERY LONG HEXADECIMAL STRING HERE
+   interest_threshold: 30
+   senate_size: 20
+   tractis_api_key: 
+   smtp_server: smtp.gmail.com
+   smtp_port: 587
+   email_domain: wasamblea.org
+   email_username: 
+   email_password: 
+cucumber:
+   session_secret: VERY LONG HEXADECIMAL STRING HERE
+   interest_threshold: 30
+   senate_size: 20
+   tractis_api_key: 
+   smtp_server: smtp.gmail.com
+   smtp_port: 587
+   email_domain: wasamblea.org
+   email_username: 
+   email_password: 
+production:
+	session_secret: VERY LONG HEXADECIMAL STRING HERE
+    interest_threshold: 200
+    senate_size: 20
+    tractis_api_key: 
+    smtp_server: smtp.gmail.com
+    smtp_port: 587
+    email_domain: wasamblea.org
+    email_username: 
+    email_password: 
+    

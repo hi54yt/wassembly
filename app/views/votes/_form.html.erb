@@ -1,0 +1,8 @@
+<div class="vote_proposition">
+<% form_for [@proposition,@vote] do |f| %>
+	<%= f.error_messages %>	
+	<p><%= radio_button_tag("vote[agree]",1, @vote.agree ) %> A favor</p>
+	<p><%= radio_button_tag("vote[agree]",0, !@vote.agree ) %> En contra</p>
+	<%= f.submit "Votar" %>
+<% end %>
+</div>

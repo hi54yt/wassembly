@@ -1,0 +1,7 @@
+<% title "Edit Proposition" %>
+
+<%= render :partial => 'form' %>
+
+<% if can? :manage, @proposition %>
+	<%= admin_links @proposition %>
+<% end %>

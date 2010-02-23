@@ -1,0 +1,19 @@
+<% title "Comment" %>
+
+<p>
+  <strong>User:</strong>
+  <%=h @comment.user_id %>
+</p>
+<p>
+  <strong>Proposition:</strong>
+  <%=h @comment.proposition_id %>
+</p>
+<p>
+  <strong>Body:</strong>
+  <%=h @comment.body %>
+</p>
+
+<ul>
+	<li><%= link_to "Ver propuesta", @proposition %> </li>
+</ul>
+

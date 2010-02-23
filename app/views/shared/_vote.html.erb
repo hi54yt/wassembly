@@ -1,0 +1,21 @@
+<% link_to proposition_votes_url(proposition), :class=>"votes_count" do %>
+| <span class="total_votes_count"><%= pluralize(proposition.votes_count, 'voto')  %> </span>
+<% unless proposition.votes_count == 0 %>
+	<span class="yes_count"> (<%= proposition.yes_percent %>% a favor)</span>
+<% end %>
+<% end %>
+<% if can?(:create, Vote) %>
+	<span class="prop_votes">		
+		<% if vote.nil? %>
+			<span class="vote_controls">
+				<%= link_to "Votar sí", new_proposition_vote_path(proposition, :vote =>{:agree => 1}), :class => 'btn green' %>
+				<%= link_to "Votar no", new_proposition_vote_path(proposition, :vote =>{:agree => 0}), :class => 'btn red' %>
+			</span>
+		<% else%>
+			<span class="vote">
+				<%= vote.agree ? "Has votado a favor" : "Has votado en contra" %>
+			</span>
+		<% end %>
+	</span>
+<% end %>
+

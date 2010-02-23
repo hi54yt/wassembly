@@ -1,0 +1,9 @@
+lorem:
+  user: paco
+  title: "Lorem Ipsum"
+  body: "Lorem ipsum dolor sit amet\n\n Consectetur adipisicing elit"
+
+use_english:
+  user: pepe
+  title: "Forbid lathin in fixtures"
+  body: "Fixtures should use real world language"

@@ -1,0 +1,13 @@
+<div id="proposition">
+	<% title h(@proposition.title) %>
+	<div class="prop_details">
+		<span class="proposer"> propuesta por <%=link_to h(@proposition.user.screen_name), @proposition.user %></span>
+		<span class="proposition_date"> hace <%= distance_of_time_in_words_to_now Time.now %></span> |
+		<span class="comments_count"> <%= pluralize(@proposition.comments.count, 'comentario')  %></span> |
+		<span class="ratings_count"> <%= pluralize(@proposition.ratings.count, 'valoración')  %>.</span> |
+		<span class="ratings_sum"> Interés: <%= @proposition.ratings.sum(:value) %></span>
+	</div>
+	<div class="proposition_body">
+		<%=m @proposition.body %>
+	</div>
+</div>

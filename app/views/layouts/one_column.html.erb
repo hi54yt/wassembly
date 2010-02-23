@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title><%=  "#{h yield(:title)} - Wasamblea - El Parlamento Web" %></title>
+	<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
+	<%= stylesheet_link_merged :base %>
+	<%= stylesheet_link_tag 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css' %>	
+	<%= yield(:head) %>
+</head>
+
+<body>
+	<div id="doc">	
+		<% unless current_announcements.empty? %>
+		<!-- Announcements -->
+		<div id="announcement" class="shadow">
+		  <p class="close_announcement"><%= link_to_remote "X", :url => "/javascripts/hide_announcement.js" %></p>
+		  <% for announcement in current_announcements %>
+		    <p><%= announcement.message %></p>
+		  <% end %>
+		</div>
+		<!-- Announcements end -->
+		<% end %>
+		<div id="wrapper" class="shadow rounded">
+			<div id="header">
+				<div id="user_nav">
+					<p>
+						<% if current_user %>
+						<%= link_to "editar perfil", edit_user_path(current_user) %> |
+						<%= link_to "cerrar sesión", logout_path %>
+						<% else %>
+						 <%= link_to "regístrate", new_user_path %> |
+						 <%= link_to "login", login_path %> 
+						<% end %>
+					</p>
+				</div>
+				<div id="logo">
+					<p id="site_name"><a href="/">Wassembly</a></p>
+					<p id="motto">El Parlamento Web</p>
+				</div>
+			</div>
+			<div id="bd">
+				<div id="menu_nav">
+					<%= semantic_menu do |menu|
+					  menu.add "A votación", root_path
+					  menu.add "Últimas", latest_propositions_path
+					  menu.add "F.A.Q", url_for(:controller => 'pages', :action => 'show', :permalink => 'faq')
+					  menu.add "Haz tu propuesta", new_proposition_path
+					end %>
+				</div>
+			
+				<% unless flash.empty? %>
+				<div id="flash_message">
+					<%- flash.each do |name, msg| -%>
+					<%= content_tag :div, msg, :id => "flash_#{name}", :class => "#{name} rounded shadow" %>
+					<%- end -%>
+				</div>
+				<% end %>
+			
+				<div id="content">
+					<div id="main_column">
+						<%- if show_title? -%>
+							<h1><%=h yield(:title) %></h1>
+						<%- end -%>
+						<%= yield %>
+					</div>
+				</div>
+			</div>
+			<div id="footer">
+				<a rel="license" href="http://creativecommons.org/licenses/by/3.0/es/">
+					<img alt="Creative Commons License" style="border-width:0" src="http://creativecommons.org/images/public/somerights20.png" />
+				</a>
+				<a href="http://validator.w3.org/check?uri=referer">
+					<img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Strict" height="31" width="88" />
+				</a>
+				<a href="http://jigsaw.w3.org/css-validator/check/referer">
+					<img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss" alt="¡CSS Válido!" />
+				</a>
+			</div>
+		</div>
+	</div>
+	<%= javascript_include_tag :defaults %>
+	<%= javascript_include_merged :base %>
+</body>
+</html>

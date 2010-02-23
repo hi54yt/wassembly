@@ -1,0 +1,50 @@
+<% title "Votos para la propuesta '#{h @proposition.title}'" %>
+
+<% if @proposition.votes_count > 0 %>
+<h2>Votos de todos los usuarios registrados</h2>
+<div class="votes_details shadow rounded">
+	<div class="vote_chart">
+		<%= votes_pie_chart(@proposition.yes_count, @proposition.no_count, "Votos de los usuarios") %>
+	</div>
+	<table>
+		<tr><th></th><th>Votos</th><th>%</th></tr>
+		<tr><td>A favor</td> <td><%= @proposition.yes_count %></td> <td><%= @proposition.yes_percent %> %</td></tr>
+		<tr><td>En contra</td> <td> <%= @proposition.no_count %></td> <td><%= @proposition.no_percent %>%</td></tr>
+		<tr><td>Total</td> <td> <%= @proposition.votes_count %></td> <td>100%</td></tr>
+	</table>
+</div>
+<% else %>
+	<p>Aún no hay ningún voto en esta propuesta</p>
+<% end %>
+
+<% if @proposition.identity_verified_votes_count > 0 %>
+<h2>Votos de usuarios con identidad verificada mediante DNIe</h2>
+<div class="votes_details shadow rounded">
+	<div class="vote_chart">
+		<%= votes_pie_chart(@proposition.identity_verified_yes_count, @proposition.identity_verified_no_count, "Votos de usuarios identificados") %>
+	</div>
+	<table>
+		<tr><th></th><th>Votos</th><th>%</th></tr>
+		<tr><td>A favor</td> <td><%= @proposition.identity_verified_yes_count %></td> <td><%= @proposition.identity_verified_yes_percent %> %</td></tr>
+		<tr><td>En contra</td> <td> <%= @proposition.identity_verified_no_count %></td> <td><%= @proposition.identity_verified_no_percent %>%</td></tr>
+		<tr><td>Total</td> <td> <%= @proposition.identity_verified_votes_count %></td> <td>100%</td></tr>
+	</table>
+</div>
+<% end %>
+
+<% if @proposition.senators_votes_count > 0 %>
+<h2>Votos del Senado</h2>
+<div class="votes_details shadow rounded">
+	<div class="vote_chart">
+		<%= votes_pie_chart(@proposition.senators_yes_count, @proposition.senators_no_count, "Votos de los senadores") %>
+	</div>
+	<table>
+		<tr><th></th><th>Votos</th><th>%</th></tr>
+		<tr><td>A favor</td> <td><%= @proposition.senators_yes_count %></td> <td><%= @proposition.senators_yes_percent %> %</td></tr>
+		<tr><td>En contra</td> <td> <%= @proposition.senators_no_count %></td> <td><%= @proposition.senators_no_percent %>%</td></tr>
+		<tr><td>Total</td> <td> <%= @proposition.senators_votes_count %></td> <td>100%</td></tr>
+	</table>
+</div>
+<% end %>
+			
+<p><%= link_to "Ver propuesta", proposition_path(@proposition) %></p>

@@ -1,0 +1,17 @@
+<% form_for @proposition do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :title, 'Título' %><br />
+    <%= f.text_field :title, :size => 76 %>
+  </p>
+  <div>
+    <%= f.text_area :body, :rows => 14, :class => 'markdown', :id=>"wmd-input" %>
+  </div>
+  <p> 
+	<%= f.submit "Guardar" %>
+  </p>
+  <div id="editor_preview">
+		<h3>Previsualización de la propuesta</h3>
+		<div id="mark_preview"></div>
+   </div>
+<% end %>

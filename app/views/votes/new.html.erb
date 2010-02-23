@@ -1,0 +1,9 @@
+<% title "Nuevo voto" %>
+
+<h3>Voto para la propuesta '<%=h @proposition.title%>'</h3>
+
+<%= render :partial => 'form' %>
+
+<% if can? :manage, Vote %>
+	<p><%= link_to "Back to List", proposition_votes_path(@proposition) %></p>
+<% end %>

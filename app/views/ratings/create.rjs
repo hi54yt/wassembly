@@ -1,0 +1,2 @@
+page.replace @rating.rating_html_id, :partial =>"/shared/rating", :locals => { :rating => @rating, :rateable => @rating.rateable }
+page.visual_effect :highlight, @rating.rateable_html_id, :duration => 3

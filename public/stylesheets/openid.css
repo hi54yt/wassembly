@@ -1,0 +1,65 @@
+#openid_form{
+	width: 420px;
+	float:left;
+}
+
+#openid_form p, #password_form p{
+    margin: 1em;
+}
+
+#openid_form div.fieldWithErrors br, #password_form div.fieldWithErrors br{
+    display: none;
+}
+
+#password_form{
+	width: 260px;
+	float:left;
+	margin: 0 15px;
+}
+
+#new_user_session fieldset{
+    padding: 1em;
+}
+
+/*OpenID fields*/
+a.id_provider{
+}
+
+#openid_links{
+	display: none;
+}
+
+#openid_field{
+	clear: both;
+	margin: 20px;
+	padding: 10px;
+}
+
+ul#identity_providers{
+	list-style-type: none;
+	width: 330px;
+}
+
+ul#identity_providers li {
+	padding: 5px;
+	float: left;
+	margin: 5px;
+	border: 1px solid #ddd;
+	width: 85px;
+	height: 30px;
+	display: block;
+	cursor: pointer;
+}
+
+ul#identity_providers li a span{
+	display: none;
+}
+
+#yahoo img{
+	margin: 4px;
+}
+
+#alternate_register{
+	clear: left;
+	font-size: 0.9em;
+}

@@ -1,0 +1,15 @@
+<div class="admin_section rounded">
+	<div class="admin_hd">
+	<p>
+		<%= resource.new_record? ? "Nuevo #{resource.class.human_name}" : "#{resource.class.human_name} ##{resource.id}" %>
+	</p>
+	</div>
+	<div class="admin_bd">
+	<ul>
+		<li><%= link_to "Ver", resource %> </li>
+		<li><%= link_to "Editar", :controller => params[:controller] ,:action => "edit", :id => resource.id %> </li>
+		<li><%= link_to "Eliminar", resource, :confirm => '¿Estás seguro?', :method => :delete %>
+		<li><%= link_to "Ver todos", :controller => params[:controller], :action => "index" %> </li>
+	</ul>
+	</div>
+</div>

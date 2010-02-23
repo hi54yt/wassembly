@@ -1,0 +1,28 @@
+<div class="proposition module" id="proposition<%=proposition.id%>">
+	<div class="prop_title module_header">
+		<h3><%=link_to h(proposition.title), proposition %></h3>
+	</div>
+	<div class="module_body">
+		<div class="proposition_body">
+			<% if current_page? proposition %>
+				<%=m proposition.body %>
+			<% else %>
+				<%= proposition.summary %>
+			<% end %>
+		</div>
+		<div class="prop_details">
+			<span class="proposer">
+				<% link_to(proposition.user) do %>
+					<%= image_tag proposition.user.gravatar_url :size => 16 %>
+					<%= proposition.user.screen_name %>
+				<% end %>
+				hace <%= distance_of_time_in_words_to_now proposition.created_at %>
+			</span>
+			<% if proposition.to_vote? %>
+				 <span class="vote_until">A votación hasta dentro de <%=distance_of_time_in_words_to_now proposition.end_voting_at %> </span>
+			<% end %>
+		</div>
+		<%= render :partial => '/shared/proposition_ratings', :locals => {:proposition => proposition} %>
+		
+	</div>
+</div>

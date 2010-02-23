@@ -1,0 +1,13 @@
+one:
+  rater: pepe
+  value: 1
+  rateable_type: Proposition
+  rateable_id: lorem
+  ip: 127.0.0.1
+
+two:
+    rater: paco
+    value: 1
+    rateable_type: Proposition
+    rateable_id: lorem
+    ip: 127.0.0.1  

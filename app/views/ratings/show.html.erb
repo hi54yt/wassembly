@@ -1,0 +1,25 @@
+<% title "Rating" %>
+
+<p>
+  <strong>Rater:</strong>
+  <%=link_to h(@rating.rater.screen_name), @rating.rater %>
+</p>
+<p>
+  <strong>Value:</strong>
+  <%=h @rating.value %>
+</p>
+<p>
+  <strong>Rateable:</strong>
+  <%=h @rating.rateable_id %>
+</p>
+<p>
+  <strong>Rateable Type:</strong>
+  <%=h @rating.rateable_type %>
+</p>
+
+
+<p>
+  <%= link_to "Edit", edit_rating_path(@rating) %> |
+  <%= link_to "Destroy", @rating, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", ratings_path %>
+</p>

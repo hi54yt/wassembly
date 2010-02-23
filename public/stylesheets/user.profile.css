@@ -1,0 +1,54 @@
+form.edit_user{
+    margin-right: 21em;
+}
+
+#user_profile{
+	clear: left;
+	float: left;
+	width: 100%;
+}
+
+form.edit_user fieldset{
+    background-color: #FFFFEE ;
+}
+
+#identity_verification_wrapper{
+	margin-left: 2em;
+    min-width: 17em;
+    margin-top:10px;
+	float: right;
+}
+
+#identity_verification{
+    padding: 1em;
+    border: 1px solid #ddd;
+    background-color: #FFFFEE;
+}
+
+#service_credit{
+    font-size: 0.85em;
+    margin: 1em 0;
+}
+
+#profile_gravatar{
+  width: 40em;
+}
+
+#profile_gravatar h1{
+	font-size: 200%;
+}
+
+#profile_gravatar img{
+    float: left;
+    margin: 1em;
+}
+    
+#profile_gravatar h2, #profile_gravatar h1{
+    margin: 1em;
+	position:relative;
+	top:1.2em;
+}
+
+#user_details{
+    clear: left;
+}

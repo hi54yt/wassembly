@@ -1,0 +1,18 @@
+<div class="prop_ratings" id="proposition<%=proposition.id%>_ratings">
+	<% if current_page? proposition %>
+		<span class="share">
+			<a href="http://www.addthis.com/bookmark.php" 
+			     class="addthis_button"><img 
+			      src="http://s7.addthis.com/static/btn/v2/sm-share-es.gif" 
+			      width="83" height="16" alt="Share" /></a>
+		</span>
+	<% end %>
+	<span class="comments_count"> 
+		<%= link_to pluralize(proposition.comments_count, 'comentario'), proposition_url(proposition, :anchor => "comments") %>
+	</span>
+	<% if proposition.proposed? %>
+		<%= rating_for proposition %>
+	<% elsif proposition.to_vote? %>
+		<%= votes_for proposition %>
+	<% end %>
+</div>

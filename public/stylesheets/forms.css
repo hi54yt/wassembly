@@ -1,0 +1,69 @@
+label       { font-weight: bold; }
+fieldset    { padding:1.4em; margin: 0 0 1.5em 0; border: 1px solid #ccc; }
+legend      { font-weight: bold; font-size:1.2em; }
+
+
+/* Form fields
+-------------------------------------------------------------- */
+
+#flash_message{
+	max-width:58em;
+}
+input[type=text], input[type=password],
+input.text, input.title, 
+textarea, select { 
+  background-color:#fff; 
+  border:1px solid #bbb; 
+}
+input[type=text]:focus, 
+input.text:focus, input.title:focus, 
+textarea:focus, select:focus { 
+  border-color:#666; 
+}
+
+input[type=text], input[type=password], 
+input.text, input.title, input.password, 
+textarea, select {
+  margin:0.5em 0;
+}
+
+input.text,
+input.password,  
+input.title   { padding:5px; }
+input.title   { font-size:1.5em; }
+textarea      { padding:5px; }
+
+input[type=checkbox], input[type=radio], 
+input.checkbox, input.radio { 
+  position:relative; top:.25em; 
+}
+
+form.inline { line-height:3; }
+form.inline p { margin-bottom:0; }
+
+span.field_error input[type=text], 
+span.field_error input[type=password],
+span.field_error textarea,
+span.field_error select{
+    border: 3px solid red;
+}
+
+span.field_error{
+    color: red;
+}
+
+
+/* Success, notice and error boxes
+-------------------------------------------------------------- */
+
+.error,
+.errorExplanation,
+.notice, 
+.success    { padding: .8em; margin: 1em; border: 2px solid #ddd; }
+
+.error,
+.errorExplanation { background: white ; color: #cc4444; border-color: #cc4444; }
+.error a { color: #1199bb; text-decoration: underline;} 
+.errorExplanation h2 { color: #999;}
+.notice     { background: #FFF6BF; color: #514721; border-color: #FFD324; }
+.success    { background: #E6EFC2; color: #264409; border-color: #C6D880; }

@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title><%=  "#{h yield(:title)} - Wasamblea - el Parlamento en la Web" %></title>
+	<meta name="description" content="Wasamblea.org es un Parlamento virtual donde los ciudadanos pueden presentar cualquier prouesta, discutirla y votarla. "/>
+	<meta name="keywords" content="democracia, parlamento, asamblea, democracia directa" />
+	<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
+	<%= stylesheet_link_merged :base %>
+	<%= stylesheet_link_tag 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css' %>	
+	<%= yield(:head) %>
+</head>
+
+<body>
+	<% unless current_announcements.empty? %>
+	<!-- Announcements -->
+	<div id="announcement">
+	  <p class="close_announcement"><%= link_to "X", :controller => 'announcements', :action => 'hide' %></p>
+	  <% for announcement in current_announcements %>
+	    <p><%=raw announcement.message %></p>
+	  <% end %>
+	</div>
+	<!-- Announcements end -->
+	<% end %>
+	<div id="wrapper">
+		<div id="header">
+			<div id="user_nav">
+				<p>
+					<% if current_user %>
+					<span class="greeting">¡Hola, <%=h current_user.screen_name %>!</span> |
+					<%= link_to "editar perfil", edit_user_path(current_user) %> |
+					<%= link_to "cerrar sesión", logout_path %>
+					<% else %>
+					 <%= link_to "regístrate", new_user_path %> |
+					 <%= link_to "login", login_path %> 
+					<% end %>
+				</p>
+			</div>
+			<div id="search">
+				<form action="http://www.google.es/cse" id="cse-search-box">
+				  <div>
+				    <input type="hidden" name="cx" value="partner-pub-0115184435139383:uu95mb-enis" />
+				    <input type="hidden" name="ie" value="UTF-8" />
+				    <input type="text" name="q" size="31" />
+				    <input type="submit" name="sa" value="Buscar" />
+				  </div>
+				</form>
+				<script type="text/javascript" src="http://www.google.es/cse/brand?form=cse-search-box&amp;lang=es"></script>
+			</div>
+			<div id="logo">
+				<p><a href="/"><span id="site_name">Wasamblea</span><br/><span id="motto">El Parlamento Web</span></a></p>
+			</div>
+		</div>
+		<div id="doc">
+			<div id="menu_nav">
+				<%= semantic_menu do |menu|
+				  menu.add "A votación", root_path
+				  menu.add "Últimas", latest_propositions_path
+				  menu.add "F.A.Q.", url_for(:controller => 'pages', :action => 'show', :permalink => 'faq')
+				  menu.add "Haz tu propuesta", new_proposition_path
+				end %>
+			</div>
+	
+			<% unless flash.empty? %>
+			<div id="flash_message">
+				<%- flash.each do |name, msg| -%>
+				<%= content_tag :div, msg, :id => "flash_#{name}", :class => "#{name} shadow" %>
+				<%- end -%>
+			</div>
+			<% end %>
+	
+			<div id="content">
+				<div id="right_column">
+					<%= yield :sidebar %>
+					
+					<% cache 'latest_propositions', :expires_in => 120 do %>
+						<%= render :partial => '/shared/latest_propositions' %>
+					<% end %>
+					<% cache 'best_comments', :expires_in => 120 do %>
+						<%= render :partial => '/shared/best_comments' %>
+					<% end %>
+					<% cache 'most_voted', :expires_in => 120 do %>
+						<%= render :partial => '/shared/most_voted' %>
+					<% end %>
+				</div>
+				<div id="left_column">
+					<%- if show_title? -%>
+					<h1><%=h yield(:title) %></h1>
+					<%- end -%>
+					<%= yield %>
+				</div>
+				<%= yield :bottom %>
+				<hr class="separator"/>
+			</div>
+		</div>
+	</div>
+	<div id="footer">
+		<div id="footer_links">
+			<p>
+				<a href="/help/faq/">Preguntas frecuentes</a> |
+			</p>
+			<p>
+				<a href="mailto:admin@wasamblea.org">Contacto</a> |
+			</p>
+			<p>
+				<a href="http://codigocomestible.com">Blog</a> | 
+			</p>
+			<p>
+				<a href="/help/privacy/">Política de privacidad</a>
+			</p>
+	
+		</div>
+		<hr class="separator"/>
+		<div id="footer_icons">
+			<p>
+			    <a href="http://validator.w3.org/check?uri=referer"><img
+			        src="http://www.w3.org/Icons/valid-xhtml10"
+			        alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a>
+			 </p>
+			<p>
+				<a rel="license" href="http://creativecommons.org/licenses/by/3.0/es/">
+					<img alt="Creative Commons License" style="border-width:0" src="http://creativecommons.org/images/public/somerights20.png" />
+				</a>
+			</p>
+		</div>
+		<hr class="separator"/>
+	</div>
+	<div id="dialog"/> <!-- To show dialogs -->
+	<%= javascript_include_tag :defaults %>
+	<%= javascript_include_merged :base %>
+	<%= include_javascript_editor_if_needed %>
+	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js"></script>
+	<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+	try {
+	var pageTracker = _gat._getTracker("UA-1933687-2");
+	pageTracker._setDomainName(".wasamblea.org");
+	pageTracker._trackPageview();
+	} catch(err) {}
+	</script>
+</body>
+</html>

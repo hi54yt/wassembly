@@ -1,0 +1,11 @@
+one:
+  user: pepe
+  proposition: lorem
+  agree: false
+  ip: 127.0.0.1
+
+two:
+  user: paco
+  proposition: lorem
+  agree: false
+  ip: 192.168.0.1

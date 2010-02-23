@@ -1,0 +1,16 @@
+<div id="best_comments" class="module module">
+  <div class="module_header">
+  	<h4>Mejores comentarios</h4>
+  </div>
+  <div class="module_body">
+	<ul>
+	  	<% Comment.best.with_users.recent.limited(5).each do |comment| %>
+		    <li class="comment_best">
+				<%= link_to truncate(h(comment.body), :length => 40), proposition_url(comment.proposition, :anchor => "comment#{comment.id}") %><br/>
+				<span class="comment_author">por <%= link_to h(comment.user.screen_name), comment.user %></span>, 
+				<span class="comment_interest">interés <%= comment.interest %></span>
+			</li>
+		<% end %>
+	  </ul>
+  </div>
+</div>

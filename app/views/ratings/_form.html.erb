@@ -1,0 +1,12 @@
+<div id="rating_form">
+	<% form_for @rating do |f| %>
+	  <%= f.error_messages %>
+		<p><%= radio_button_tag("rating[value]",10, @rating.value > 0 ) %> Me interesa</p>
+		<p><%= radio_button_tag("rating[value]",-5,  @rating.value < 0 ) %> Me parece ofensivo</p>
+	  <p>
+	    <%= f.hidden_field :rateable_id %>
+	    <%= f.hidden_field :rateable_type %>
+	  </p>
+	  <p><%= f.submit "Guardar" %></p>
+	<% end %>
+</div>

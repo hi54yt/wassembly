@@ -1,0 +1,2 @@
+module SenateVotesHelper
+end

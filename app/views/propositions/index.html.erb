@@ -1,0 +1,10 @@
+<% title @title || 'Propuestas' %>
+
+<div id="propositions_list">
+	<%= render(:partial => "/shared/proposition", :collection  => @propositions) %>
+	<%= will_paginate @propositions %>
+</div>
+
+<% content_for :head do %>
+	<%= auto_discovery_link_tag(:rss, {:format => "rss"}) %>
+<% end %>

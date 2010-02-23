@@ -1,0 +1,9 @@
+faq:
+  title: "F.A.Q"
+  permalink: faq
+  content: "Frequently Asked Questions\n\n To be or not to be?\n\n What's up?"
+
+blank:
+  title: "Blank page"
+  permalink: blank
+  content: "I say nothing"

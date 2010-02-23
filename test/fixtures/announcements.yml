@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  message: "My test announcement"
+  starts_at: 2010-01-20 13:25:10
+  ends_at: 2012-01-20 13:25:10
+
+two:
+  message: "Second announcement"
+  starts_at: 2010-01-24 13:25:10
+  ends_at: 2011-01-20 13:25:10

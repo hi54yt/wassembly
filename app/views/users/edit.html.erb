@@ -1,0 +1,68 @@
+<% title "Perfil de Usuario" %>
+
+<div id="profile_gravatar">
+	<%= image_tag @user.gravatar_url %> <h1><%=h @user.screen_name %></h1>
+</div>
+
+<div id="user_profile">
+	<div id="identity_verification_wrapper">
+		<div id="identity_verification">
+			<h3>Verificación mediante DNIe</h3>
+			<% if !@user.identity_verified? %>
+				<p>Puedes verificar tu identidad mediante DNIe</p>
+				<p>
+				<%= identity_verification_gateway(
+					"¡Identifícate!", 
+					APP_CONFIG['tractis_api_key'], 
+					:controller => 'identity_verifications', :action => 'create') 
+				-%>
+				</p>
+			<% else %>
+			<p><strong>¡Identidad verificada!</strong>
+			<% end %>
+		</div>
+		<p>
+		<span id="service_credit">Servicio proporcionado por <a href="http://www.tractis.com">Tractis</a></span>
+		</p>
+	</div>
+	
+	<% form_for @user do |f| %>
+	  <%= f.error_messages %>
+	  <fieldset>
+	  <legend>Datos de usuario</legend>
+	  <p>
+		<strong>Email:</strong><br/>
+		<%= @user.email %>
+	  </p>
+	  <p>
+		<%= f.label :username, "Nick" %><br/>
+		<%= f.text_field :username %>
+	  </p>
+	  <p>
+		<%= f.label :first_name, "Nombre" %><br/>
+		<%= f.text_field :first_name %>
+	  </p>
+	  <p>
+		<%= f.label :last_name, "Apellidos" %><br/>
+		<%= f.text_field :last_name %>
+	  </p>
+	  <p>
+		<%= f.check_box :show_real_name %> &nbsp; <%= f.label :show_real_name, "Mostrar nombre real" %>	
+	  </p>
+	  <p>
+	    <%= f.label :password, "Contraseña" %><br />
+	    <%= f.password_field :password %>
+	  </p>
+	  <p>
+	    <%= f.label :password_confirmation, "Confirma la contraseña" %><br />
+	    <%= f.password_field :password_confirmation %>
+	  </p>
+	  <p><%= f.submit "Guardar", :id => "password_form_submit" %></p>
+	  </fieldset>
+	<% end %>
+</div>
+
+<% if can? :manage, User %>
+	<hr/>
+	<%= admin_links @user %>
+<% end %>

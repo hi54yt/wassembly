@@ -1,0 +1,7 @@
+<% title "Nueva Valoración" %>
+
+<%= render :partial => 'form' %>
+
+<% if can? :manage, Rating %>
+	<p><%= link_to "Lista de valoraciones", ratings_path %></p>
+<% end %>

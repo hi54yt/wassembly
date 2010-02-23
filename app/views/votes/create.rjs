@@ -1,0 +1,2 @@
+page.replace @vote.proposition_ratings_html_id, :partial =>"/shared/proposition_ratings", :locals => {:proposition => @proposition}
+page.visual_effect :highlight, @vote.proposition_html_id, :duration => 3

@@ -1,0 +1,38 @@
+paco:
+  username: pacopico
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("secret" + salt) %>
+  persistence_token: 6cde0674657a8a313ce952df979de2830309aa4c11ca65805dd00bfdc65dbcc2f5e36718660a1d2e68c1a08c276d996763985d2f06fd3d076eb7bc4d97b1e317
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  openid_identifier: pacopico_openid_identifier
+  email: paco@example.com
+  first_name: Paco
+  last_name: Pico
+  role: user
+  active: 1
+  
+pepe:
+  username: pepe
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("secret" + salt) %>
+  persistence_token: 6cde0674657a8a313ce952df979de2830309aa4c11ca65805dd00bfdc65dbcc2f5e36718660a1d2e68c1a08c276d996763985d2f06fd3d076eb7bc4d97b1e317
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  openid_identifier: pepe_openid_identifier
+  email: pepito@example.com
+  first_name: Pepe
+  last_name: Pato
+  role: user
+  active: 1
+  
+admin:
+  username: admin
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("secret" + salt) %>
+  persistence_token: 6cde0674657a8a313ce952df979de2830309aa4c11ca65805dd00bfdc65dbcc2f5e36718660a1d2e68c1a08c276d996763985d2f06fd3d076eb7bc4d97b1e317
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+  openid_identifier: admin_openid_identifier
+  email: admin@example.com
+  first_name: Example
+  last_name: Admin
+  role: admin
+  active: 1

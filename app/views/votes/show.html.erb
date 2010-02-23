@@ -1,0 +1,14 @@
+<div class="vote_result">
+	<p>
+	<% if @vote.user == current_user %>
+	Has votado
+	<% else %>
+	El usuario <%=h @vote.user.screen_name %> ha votado
+	<% end %>
+	<% if @vote.agree  %>
+		a favor.
+	<% else %>
+		en contra.
+	<% end %>
+	</p>
+</div>

@@ -1,0 +1,15 @@
+<div id="most_voted_propositions" class="module">
+  <div class="module_header">
+  	<h4>Propuestas más votadas</h4>
+  </div>
+  <div class="module_body">
+	<ul>
+	  	<% Proposition.most_voted.recent.limited(5).each do |prop| %>
+		    <li class="latest_prop">
+				<%= link_to h(prop.title), prop %> 
+				<span class="num_votes"> <%= pluralize prop.votes_count, 'voto' %></span>
+			</li>
+		<% end %>
+	  </ul>
+  </div>
+</div>

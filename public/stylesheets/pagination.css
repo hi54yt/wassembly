@@ -1,0 +1,46 @@
+#comments_pagination{
+	width: 600px;
+	margin: auto;
+}
+
+ul.pagination{
+	height:30px;
+	border:0; 
+	margin:0 2em; 
+	padding: 1em;
+}
+
+.pagination li{
+	border:0; margin:0; padding:0;
+	list-style:none;
+	display:block;
+	float:left;
+	padding:3px 6px;
+	border:solid 1px #DDDDDD;
+	margin-right:2px;
+	font-size: 1.1em;
+}
+.pagination .previous,
+.pagination .next {
+	color:#666666;
+	display:block;
+	float:left;
+	font-weight:bold;
+}
+.pagination .next a,
+.pagination .previous a {
+	font-weight:bold;
+	border:solid 1px #FFFFFF;
+} 
+.pagination .current{
+	color:#FF9D29;
+	font-weight:bold;
+}
+.pagination a:link,
+.pagination a:visited {
+	color:#106999;
+	text-decoration:none;
+}
+.pagination li:hover{
+	border:solid 1px #086797;
+}

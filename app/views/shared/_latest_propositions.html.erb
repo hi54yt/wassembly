@@ -1,0 +1,15 @@
+<div id="latest_propositions" class="module">
+	<div class="module_header">
+		<h4>Últimas propuestas</h4>
+	</div>
+	<div class="module_body">
+		<ul>
+			<% Proposition.latest_proposed.limited(5).each do |prop| %>
+			<li class="latest_prop">
+				<%= link_to h(prop.title), prop %> 
+				<span class="prop_date">hace <%= distance_of_time_in_words_to_now prop.created_at %></span>
+			</li>
+			<% end %>
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,21 @@
+<% title "Comments" %>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Proposition</th>
+    <th>Body</th>
+  </tr>
+  <% for comment in @comments %>
+    <tr>
+      <td><%=h comment.user_id %></td>
+      <td><%=h comment.proposition.title %></td>
+      <td><%=h comment.body %></td>
+      <td><%= link_to "Show", proposition_url(comment.proposition, :hash => "comment#{comment.id}") %></td>
+      <td><%= link_to "Edit", edit_proposition_comment_path(comment.proposition, comment) %></td>
+      <td><%= link_to "Destroy", proposition_comment_path(comment.proposition, comment) , :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= will_paginate @comments %>

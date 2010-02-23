@@ -1,0 +1,15 @@
+<span id="<%=rating.rating_html_id-%>" class="rating_links"> |
+	<span class="ratings_sum"> Interés: <%= rateable.interest %></span>
+	<% if can? :create, Rating %> 
+		<span class="user_rating"> 
+		<% if rating.new_record? && rateable.user_id != current_user.id %>
+			<%= link_to "Denunciar", 
+						new_rating_path(:rating =>{:value=>-5, :rateable_type=>rateable.class, :rateable_id=>rateable.id}), :class=>'rate dont_like' -%> |
+			<%= link_to "Me interesa", 
+						new_rating_path(:rating =>{:value=>10, :rateable_type=>rateable.class, :rateable_id=>rateable.id}), :class=>'rate like'-%> 
+		<% elsif rating.value != 0 %>
+			<%= rating.value > 0 ? "Te interesa" : "Te parece ofensivo" %>
+		<% end %>
+		</span>
+	<% end %>
+</span>

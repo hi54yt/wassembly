@@ -1,0 +1,18 @@
+<% if rating.nil? %>
+<span class="comment_rating"> |
+	<%= link_to "Me gusta", 
+				new_rating_path(:rating =>{:value=>1, :rateable_type=>rateable.class, :rateable_id=>rateable.id}), 
+				:class=>'comment_rating rate'%>  |
+	<%= link_to "No Me gusta", 
+				new_rating_path(:rating =>{:value=>-1, :rateable_type=>rateable.class, :rateable_id=>rateable.id}), 
+				:class=>'comment_rating rate'%>
+</span>
+<% else %>
+<span class="rating"> |
+	<% if rating.value > 0 %>
+	Te gusta
+	<% else %>
+	No te gusta
+	<% end %>
+</span>
+<% end %>

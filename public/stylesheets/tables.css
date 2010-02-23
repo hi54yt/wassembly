@@ -1,0 +1,16 @@
+table{
+	font-size: 12px;
+	vertical-align: top;
+}
+th{
+	text-align: left;
+	font-weight: bold;
+	padding: 6px;
+	color: #039;
+	border: none;
+}
+td{
+	padding: 6px;
+	color: #669;
+	border:1px solid #bbb; 
+}

@@ -1,0 +1,15 @@
+<div class="comment interest<%=comment.interest%>" id="comment<%=comment.id%>">
+	<div class="comment_body">
+		<%=m comment.body %>
+	</div>
+	<div class="comment_details">
+		<%= image_tag comment.user.gravatar_url :size => 16 %> 
+		<span class="comment_by">
+			<%=link_to h(comment.user.screen_name), user_url(comment.user) %></span>
+		<% if is_admin? %>
+		<span class="comment_ip">  <%= comment.ip %> </span>
+		<% end %>
+		<span class="comment_time">hace <%= distance_of_time_in_words_to_now(comment.created_at)%> </span>
+		<%= rating_for(comment) %>
+	</div>
+</div>
