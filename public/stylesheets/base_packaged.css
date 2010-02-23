@@ -49,11 +49,15 @@ textarea {padding:5px}
 input[type=checkbox], input[type=radio], input.checkbox, input.radio {position:relative; top:.25em}
 form.inline {line-height:3}
 form.inline p {margin-bottom:0}
+span.field_error input[type=text], span.field_error input[type=password], span.field_error textarea, span.field_error select{ border: 3px solid red}
+span.field_error{ color: red}
  .error, .errorExplanation, .notice, .success {padding: .8em; margin: 1em; border: 2px solid #ddd}
-.error, .errorExplanation {background: #FBE3E4; color: #8a1f11; border-color: #FBC2C4}
+.error, .errorExplanation {background: white ; color: #cc4444; border-color: #cc4444}
+.error a {color: #1199bb; text-decoration: underline;}
+.errorExplanation h2 {color: #999;}
 .notice {background: #FFF6BF; color: #514721; border-color: #FFD324}
 .success {background: #E6EFC2; color: #264409; border-color: #C6D880}
-table{ font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif; font-size: 12px; border-collapse: collapse; vertical-align: top}
+table{ font-size: 12px; vertical-align: top}
 th{ text-align: left; font-weight: bold; padding: 6px; color: #039; border: none}
 td{ padding: 6px; color: #669; border:1px solid #bbb}
 #comments_pagination{ width: 600px; margin: auto}
@@ -64,72 +68,87 @@ ul.pagination{ height:30px; border:0; margin:0 2em; padding: 1em}
 .pagination .current{ color:#FF9D29; font-weight:bold}
 .pagination a:link, .pagination a:visited {color:#106999; text-decoration:none}
 .pagination li:hover{ border:solid 1px #086797}
-html{ background-color: #F1F1F1}
-#doc{ max-width:85.72em; min-width:68em; margin:auto; text-align:left}
+html{ background-color: #FFF; color: #444}
+body{ font:13px/1.231 Lucida Grande,Verdana,sans-serif}
+#wrapper{ max-width:85.72em; min-width:68em; margin:auto; text-align:left}
+#header{ padding: 5px; margin:auto; text-align:left; border-bottom:1px solid #ccc}
 a{ text-decoration: none}
 h1, h2, h3, h4, h5, h6{ color: #086797}
 h1 {font-size: 165.5%}
 h2 {font-size: 138.5%}
 h3 {font-size: 123.1%}
-ul li{ list-style-type: square}
+ul li{ list-style-type: square; margin-bottom: 1.2em}
+a:hover {color: #EE8C18}
 dt{ clear: left; float: left; padding: 1em}
 dd{ padding: 1em; margin:0}
 blockquote{ font-style: italic; font-family: Georgia, Times, serif;}
 }
 #wrapper{ background-color: white}
-#header{ height: 3.5em; background-color: #086797; padding: 5px}
-#footer{ background-color: #086797; text-align: center; padding: 10px; clear: both}
+#footer{ color: white; background-color: #086797; text-align: center; padding: 10px; clear: both; border-top:3px solid #BBBBBB}
+#footer_links{ width: 55em; margin: 1em auto}
+#footer p{ float: left}
+#footer a{ color: white; font-weight: bolder; margin: 1em}
+#footer_icons{ width: 30em; margin: 1em auto}
+#dialog{ display: none}
 #content{ padding-bottom: 2em}
 #bd {background-color: white}
-#left_column{ margin: 5px 340px 0px 30px}
-#right_column{ width: 300px; margin: 15px; float: right}
+#left_column{ margin: 5px 335px 0px 0px; padding: 0px 30px}
 #main_column{ padding: 20px}
-#user_nav{ float: right; color: white; font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif}
-#search{ clear: right; float: right; width: 290px; height: 30px; margin-top: 2em}
-#user_nav a{ color: white; font-family: Verdana, 'Lucida Sans Unicode', 'Lucida Grande', sans-serif}
-#logo{ background-image:url('/images/logo.png'); background-repeat:no-repeat; background-position:top left}
-#logo p a {margin-bottom: 3px}
-#logo p span{ visibility: hidden}
-#logo p span#site_name{ font-size:1.7em; margin-left:0.5em}
+#user_nav{ float: right; color: #bbf; margin: 20px}
+#user_nav a{ font-size: 1.1em; font-weight: bold; color: #086797}
+#user_nav a:hover{ color: #EE8C18}
+span.greeting{ color: #666; font-weight: bold}
+#search{ clear: right; float: right; width: 290px; height: 30px}
+#search label{ display:none}
+#logo{ background-image:url('/images/logo.png'); background-repeat:no-repeat; background-position:top left; margin-bottom: 6px}
+#logo p {margin-bottom: 0}
+#logo p span{ visibility: hidden; font-size: 1.5em; padding: 5px}
 p#motto {font: bold 0.9em 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; color: white; margin-left: 22px; margin-top: -6px; text-transform: uppercase; text-shadow: 1px 1px 1px #77d}
 #logo a {font-family: 'Lucida Grande', 'Lucida Sans Unicode',sans-serif; font-size: 2em; color: #FFF; text-shadow: 1px 1px 2px #ccc}
-#menu_nav{ height: 35px; margin: 0}
-#menu_nav ul{ margin: 0px 40px}
+#menu_nav{ height: 30px; margin: 10px}
 #menu_nav a{ color: #086797; font-size: 1.2em; font-weight: bold}
 #menu_nav a:hover{ color: #EE8C18}
 #menu_nav li{ margin-left: 20px; padding-top: 5px; list-style-type: none; float: left; height: 25px}
 #menu_nav li a{ margin: 4px 15px 2px 15px; height: 27px}
 #menu_nav li.active{ background-color: #086797; -moz-box-shadow: 4px 3px 4px #ccc; -webkit-box-shadow: 4px 3px 4px #ccc}
 #menu_nav li.active a {color: white}
+#menu_nav li.active a:hover {color: #EE8C18}
 #flash_message{ margin: 5px 30px}
-div.module{ margin: 5px}
-.shadow{ box-shadow: 5px 5px 5px #ccc; -moz-box-shadow: 5px 5px 5px #ccc; -webkit-box-shadow: 5px 5px 5px #ccc}
+.shadow{ box-shadow: 3px 3px 3px #ccc; -moz-box-shadow: 3px 3px 3px #ccc; -webkit-box-shadow: 3px 3px 3px #ccc}
 .rounded{ border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px}
  #proposition h1{ margin: 1em 0 0}
-div.proposition {margin: 30px 0 0 0}
+div.proposition {margin: 30px 0 35px}
 .prop_promote{ display: block; height: 30px}
 div.proposition h3{ margin: 0px}
 div.proposition h3 a{ color: #086797}
+.prop_details{ padding: 0 0.5em; font-size: 0.98em; background-color: #ffd; border-bottom: 1px solid #ccc}
+.prop_ratings{ font-size: 1em; padding: 0.6em 0.6em 0.2em 0.6em}
+.prop_ratings span, .prop_ratings img{ vertical-align: bottom}
+.comments_count{ margin-left: 0.5em}
 .prop_details, .prop_ratings, .comments_count a, a.votes_count {color: #EE8C18}
 .prop_details a{ color: #EE8C18; font-weight: bolder}
-.proposition_body{ border: 1px solid #EE8C18; background-color: #eed; padding: 10px}
-.proposition_rating, .vote{ color:#086797; font-size:0.88em}
+.prop_details a:hover, .comments_count a:hover{ color: #086797}
+.vote{ color: #086797}
+.proposition_body{ padding: 1em; font: 13px/1.231 arial,helvetica,clean,sans-serif}
+.vote_until{ float: right; font-size:0.95em; position: relative; top: 4px}
 .user_rating{ float: right}
-.prop_votes{ float: right; text-align: right; margin: 1px 0}
+.prop_votes{ float: right}
+.prop_votes span a{ font-size: 0.88em; color: white}
 .vote_proposition, #rating_form{ font-size: 106%; padding:40px}
-.vote_proposition input[type="submit"], #rating_form input[type="submit"]{ position: relative; bottom: 55px; left: 95px}
+.vote_proposition input[type="submit"], #rating_form input[type="submit"]{ position: relative; bottom: 55px; left: 200px}
 .ratings_sum{ font-weight: bolder}
+.share img{ border: none}
  #comments{ margin-bottom: 3em}
-.comment{ margin: 1.2em 1em}
-.comment_body{ border: 1px solid #EE8C18; background-color: #ffe; padding: 4px 8px}
-.comment_details{ font-size: 0.88em; color: #086797}
-#create_comment{ width: 45em}
+.comment{ margin: 2em 1em; font: 13px/1.231 arial,helvetica,clean,sans-serif}
+.comment_body{ background-color: #ffd; padding: 4px 8px; border: 1px solid #ddd}
+.comment_details{ font-size: 0.88em; color: #086797; vertical-align:text-top}
+.comment_details img{ display: inline; margin: 2px 6px; float: left}
+#new_comment .markedit, #new_comment .markedit-toolbar {clear: none}
+div.markedit .ui-widget-header {border: none; background: none}
+div.markedit .ui-widget-content{ background: none}
 div.side_help{ float: right; width: 270px; padding: 5px 20px; border: 1px solid #EE8C18; background-color: #ffe; margin-bottom: 20px}
 #register_notice{ margin: 30px}
 #markdown_reference{ width: 40em}
-div.side_help p{ font-size: 0.9em}
-div.side_help h5{ padding-left: 2.2em}
-div.side_help table{ width: 230px}
 hr{ clear: both; width: 80%; margin: 30px auto; border:0; border-top:solid 1px #086797; color:#fff}
 .separator{ clear: both; visibility: hidden; height: 0px; margin: 0px; border: none}
 .admin_section{ color: #8a1f11; border-color: #FBA0A2; font-weight: bold; border: 2px solid #ddd; margin: 10px 0}
@@ -137,22 +156,28 @@ hr{ clear: both; width: 80%; margin: 30px auto; border:0; border-top:solid 1px #
 .admin_hd p{ margin: 0}
 .admin_bd{ background-color: #fff; padding: 0.4em; margin: 0}
 .admin_bd p{ text-align: center}
-#create_proposition{ padding-left: 20px}
-textarea#proposition_body{ width: 550px}
-.wmd-preview{ width: 550px; background-color:#fff; border:1px solid #bbb}
-#mark_preview{ display: none}
-#announcement{ background-color: #cc4444; border: 1px solid #e99; padding: 0.5em 1em; font: bold 1em 'Lucida Sans Unicode','Lucida Grande',sans-serif; margin: 5px 0}
-#announcement a{ color: #2af}
-#announcement p{ margin: 0px; color: white}
+#create_proposition{ padding: 20px}
+#create_proposition .markedit, #create_proposition .markedit-toolbar{ clear: none}
+#editor_preview{ display: none}
+#mark_preview{ border: 2px dashed #ccc; padding: 5px}
+div.markedit-toolbar div.toolbar-group:last-child{ float: right; margin-right:0}
+#announcement{ margin: 0; background-color: #aa4444; border: none; padding: 0.8em; font: bold 1em Lucida Grande,Verdana,sans-serif; text-align:center}
+#announcement a{ text-decoration:underline; color:#9999FF}
+#announcement p{ margin: 0.4em; color: white}
 p.close_announcement{ margin:0px auto; float: right; width: 18px; height: 18px}
-#announcement p.close_announcement a{ color: white; margin: 4px}
+#announcement p.close_announcement a{ font-size: 1.1em; color: white; margin: 4px; text-decoration: none}
 .votes_count, .yes_count, .no_count {font-weight: bolder}
 .votes_details{ border:solid 1px #086797; padding: 20px; margin: -0.7em 0 3em 0}
 .vote_chart{ float: left}
 .votes_details table{ width: 195px; position: relative; right: 0px; margin: 15px 5px 20px 5px}
 .votes_details li{ list-style-type: none; font-size: 108%}
-#openid_form{ width: 450px; float:left}
-#password_form{ width: 200px; float:left; margin: 0 15px}
+#page_content h3{ border-bottom: 1px solid #ccc}
+#user_list{ width: 500px}
+#openid_form{ width: 420px; float:left}
+#openid_form p, #password_form p{ margin: 1em}
+#openid_form div.fieldWithErrors br, #password_form div.fieldWithErrors br{ display: none}
+#password_form{ width: 260px; float:left; margin: 0 15px}
+#new_user_session fieldset{ padding: 1em}
  a.id_provider{ }
 #openid_links{ display: none}
 #openid_field{ clear: both; margin: 20px; padding: 10px}
@@ -160,10 +185,10 @@ ul#identity_providers{ list-style-type: none; width: 330px}
 ul#identity_providers li {padding: 5px; float: left; margin: 5px; border: 1px solid #ddd; width: 85px; height: 30px; display: block; cursor: pointer}
 ul#identity_providers li a span{ display: none}
 #yahoo img{ margin: 4px}
-#alternate_register{ clear: both; font-size: 0.9em}
-.markedit {clear: both}
-.markedit textarea {width: 100%}
-.markedit-toolbar {padding: 0.3em; margin: 0; clear: both; height: 22px; -moz-border-radius-topleft:8px; -moz-border-radius-topright:8px}
+#alternate_register{ clear: left; font-size: 0.9em}
+.markedit {clear: left}
+.markedit textarea {width: 95%}
+.markedit-toolbar {padding: 0.3em; margin: 0; clear: both; height: 22px; -moz-border-radius-topleft:8px; -moz-border-radius-topright:8px; width: 95%;}
 .markedit-toolbar .toolbar-group {margin-right: 0.5em; padding: 0 0 0 5px; float: left}
 .markedit-toolbar .toggle-group {}
 .markedit-toolbar .toggle-group button {font-size: 0.85em; font-weight: bold; padding: 0.15em 0.5em}
@@ -189,3 +214,26 @@ ul#identity_providers li a span{ display: none}
 .markedit-dialog {font-size: 0.75em}
 .markedit-dialog input {width: 100%}
 .markedit-preview {padding: 15px}
+form.edit_user{ margin-right: 21em}
+#user_profile{ clear: left; float: left; width: 100%}
+form.edit_user fieldset{ background-color: #FFFFEE }
+#identity_verification_wrapper{ margin-left: 2em; min-width: 17em; margin-top:10px; float: right}
+#identity_verification{ padding: 1em; border: 1px solid #ddd; background-color: #FFFFEE}
+#service_credit{ font-size: 0.85em; margin: 1em 0}
+#profile_gravatar{ width: 40em}
+#profile_gravatar h1{ font-size: 200%}
+#profile_gravatar img{ float: left; margin: 1em}
+#profile_gravatar h2, #profile_gravatar h1{ margin: 1em; position:relative; top:1.2em}
+#user_details{ clear: left}
+#right_column{ width: 300px; float: right; padding: 0.5em 1em}
+.module{ margin-bottom: 3em}
+.module_body{ box-shadow: 3px 2px 10px #ccc; -moz-box-shadow: 3px 2px 10px #ccc; -webkit-box-shadow: 3px 2px 10px #ccc; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; color: #666; background-color:#FFFFDD; padding: 0.5em; border: 1px solid #ddd}
+#right_column .module_body{ font-size: 0.9em}
+.module_header{ padding: 0em 0.3em; font-size: 140%}
+.module_header h3{ font-size: 92%}
+.module_header h4{ font-size: 90%}
+.module ul{ margin: 1em}
+#right_column .module ul li{ list-style-type: none; margin-bottom: 1.5em; font-weight: bolder; border-bottom: 1px solid #ddd}
+.module a{ color: #086797}
+.module a:hover{ color: #EE8C18}
+.comment_best p{ margin-bottom: 0.3em}

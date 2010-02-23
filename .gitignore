@@ -2,7 +2,7 @@
 log/*.log
 tmp/**/*
 tmp/*
-config/*.yml
+config/config.yml
 config/database.yml
 db/*.sqlite3
 rerun.txt

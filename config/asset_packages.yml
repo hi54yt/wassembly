@@ -1,0 +1,23 @@
+--- 
+javascripts: 
+- base: 
+  - jrails
+  - jquery.form
+- editor:
+  - markedit/showdown
+  - markedit/markedit.lang.es
+  - markedit/jquery.markedit
+stylesheets: 
+- base:
+  - reset-fonts
+  - base
+  - buttons
+  - forms
+  - tables
+  - pagination
+  - application
+  - openid
+  - jquery.markedit
+  - user.profile
+  - right_column
+
