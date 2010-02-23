@@ -11,11 +11,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :user_verifications
   map.resources :pages
   map.resources :announcements, :collection => {:hide => :get}
+  map.resources :logged_exceptions, :collection => { :destroy_all => :delete }
   
   map.root :controller => 'propositions', :action => 'voting'
   
   map.login "login", :controller => "user_sessions", :action => "new"
   map.logout "logout", :controller => "user_sessions", :action => "destroy"
-  
   map.connect ":controller/:action.:format"
 end

@@ -1,0 +1,27 @@
+<h1>Excepciones detectadas</h1>
+
+<table>
+  <tr>
+	<th>Fecha de la excepción</th>
+    <th>Exception Class</th>
+    <th>Controller Name</th>
+    <th>Action</th>
+  </tr>
+  <% for logged_exception in @logged_exceptions %>
+    <tr>
+	  <td><%= logged_exception.created_at %></td>
+      <td><%=link_to logged_exception.exception_class, logged_exceptions_url(:exception_class => logged_exception.exception_class) %></td>
+      <td><%=link_to logged_exception.controller_name, logged_exceptions_url(:controller_name => logged_exception.controller_name) %></td>
+      <td><%=link_to "#{logged_exception.controller_name}##{logged_exception.action_name}",  
+				logged_exceptions_url(:controller_name => logged_exception.controller_name, :action_name => logged_exception.action_name) %>
+	  </td>
+      <td><%= link_to "Show", logged_exception %></td>
+      <td><%= link_to "Destroy", logged_exception, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= button_to "Borrar todas", destroy_all_logged_exceptions_url,
+            :confirm => "¿Estas seguro? Esto borrará todas las excepciones.", :method => :delete %>
+
+<%= will_paginate @logged_exceptions %>

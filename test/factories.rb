@@ -66,4 +66,15 @@ Factory.define :page do |p|
   p.content "#The page content\n\n This is *very* important"
 end
 
+Factory.define :logged_exception do |ex|
+  ex.exception_class 'TestException'
+  ex.controller_name 'VeryBadController'
+  ex.action_name 'dont_do_that'
+  ex.message 'booooom'
+  ex.backtrace "This shouldn't happen"
+  ex.environment "Hal9000 running windows 3.1"
+  ex.request "tell my why"
+  ex.created_at Time.now
+end
+
 

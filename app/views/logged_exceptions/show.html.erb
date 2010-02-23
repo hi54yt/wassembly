@@ -1,0 +1,32 @@
+<% title "Logged Exception" %>
+<p>
+  <strong><%= @logged_exception.exception_class %>:</strong>
+  <%= @logged_exception.message %>
+</p>
+<p>
+  <strong>Action:</strong>
+  <%="#{@logged_exception.controller_name}#{@logged_exception.action_name }" %>
+</p>
+<p>
+  <strong>Fecha de la excepción:</strong>
+  <%=h @logged_exception.created_at %>
+</p>
+<p>
+  <strong>Backtrace:</strong>
+  <%=simple_format @logged_exception.backtrace %>
+</p>
+<p>
+  <strong>Request:</strong>
+  <%=m @logged_exception.request %>
+</p>
+<p>
+  <strong>Environment:</strong>
+  <%=m @logged_exception.environment %>
+</p>
+
+
+<p>
+  <%= link_to "Edit", edit_logged_exception_path(@logged_exception) %> |
+  <%= link_to "Destroy", @logged_exception, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", logged_exceptions_path %>
+</p>

@@ -5,6 +5,7 @@
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
+  include ExceptionLoggable
 
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password
@@ -21,6 +22,10 @@ class ApplicationController < ActionController::Base
   end
   
   private
+  
+  def local_request?
+    false
+  end
     
   def guest_user?
     @current_user.nil? && flash.empty? && session[:announcement_hide_time].nil?
