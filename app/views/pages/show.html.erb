@@ -1,5 +1,7 @@
 <% title @page.title %>
 
 <div id="page_content">
-	<%=m_with_html @page.content %>
+	<% cache @page do %>
+		<%=m_with_html @page.content %>
+	<% end %>
 </div>
