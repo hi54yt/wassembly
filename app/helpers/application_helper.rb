@@ -11,7 +11,7 @@ module ApplicationHelper
   end
   
   def is_admin?
-    current_user && current_user.role == 'admin'
+    current_user && current_user.is_admin?
   end
   
   def admin_links(resource)

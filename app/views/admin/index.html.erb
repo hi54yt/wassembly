@@ -1,0 +1,6 @@
+<% title "Panel de Administración" %>
+<ul id="control_panel">
+<% for controller in @controllers %>
+	<li><%= link_to t("controllers.#{controller}").capitalize, :controller => controller %></li>
+<% end %>
+</ul>

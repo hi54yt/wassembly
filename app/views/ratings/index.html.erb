@@ -1,4 +1,12 @@
-<% title "Ratings" %>
+<% title "Valoraciones" %>
+
+<div id="proposition_rated">
+	<% if @proposition %>
+		<%= render(:partial => "/shared/proposition", :object  => @proposition) %>
+	<% end %>
+</div>
+
+<hr/>
 
 <table>
   <tr>
@@ -12,7 +20,7 @@
       <td><%=h rating.value %></td>
       <td><%=h rating.rateable_id %></td>
       <td><%=h rating.rateable_type %></td>
-      <td><%=h rating.rater_id %></td>
+      <td><%=h rating.rater.screen_name %></td>
       <td><%= link_to "Show", rating %></td>
       <td><%= link_to "Edit", edit_rating_path(rating) %></td>
       <td><%= link_to "Destroy", rating, :confirm => 'Are you sure?', :method => :delete %></td>

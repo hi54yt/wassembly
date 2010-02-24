@@ -1,9 +1,13 @@
 class RatingsController < ApplicationController
-  load_and_authorize_resource
+  layout "admin"
+  load_and_authorize_resource :nested => :proposition
   
   def index
-    @proposition = Proposition.find(params[:proposition_id])
-    @ratings = @proposition.ratings.paginate :per_page => 20, :page => params['page'], :order => 'created_at ASC'
+    if @proposition
+      @ratings = @proposition.ratings.paginate :per_page => 20, :page => params['page'], :order => 'created_at ASC'
+    else
+      @ratings = Rating.paginate :per_page => 20, :page => params['page'], :order => 'created_at ASC'
+    end
   end
   
   def show
@@ -53,5 +57,5 @@ class RatingsController < ApplicationController
     @rating.destroy
     flash[:notice] = "Successfully destroyed rating."
     redirect_to ratings_url
-  end
+  end  
 end

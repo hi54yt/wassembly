@@ -226,3 +226,14 @@ es:
       openid:
          identifier_not_found: "no encontrado en el sistema. ¿Has configurado tu cuenta para que use OpenId?"
          error_auto_registering: "Error registrando una nueva cuenta mediante OpenId"
+  #Controllers names for admin panel
+  controllers:
+    announcements: 'anuncios'
+    comments: 'comentarios'
+    identity_verifications: 'verificaciones de identidad'
+    logged_exceptions: 'errores detectados'
+    pages: 'paginas de ayuda'
+    propositions: 'todas las propuestas'
+    ratings: 'valoraciones'
+    users: 'usuarios'
+    votes: 'votos'

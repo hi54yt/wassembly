@@ -397,9 +397,9 @@ div.side_help{
 
 hr{
 	clear: both;
-	width: 80%;
 	margin: 30px auto;
-	border:0; border-top:solid 1px #086797; color:#fff;
+	border:0; border-top:solid 1px #ccc; 
+	color:#fff;
 }
 
 .separator{

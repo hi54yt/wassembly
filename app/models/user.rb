@@ -50,6 +50,10 @@ class User < ActiveRecord::Base
     self.role == a_role.to_s
   end
   
+  def is_admin?
+    role?(:admin)
+  end
+  
   def recent_ratings_for(other_user, num_days = 60)
     Rating.count(:conditions => ["rater_id = ? AND rateable_owner_id = ? AND created_at > ?", self.id, other_user.id, num_days.days.ago])
   end
