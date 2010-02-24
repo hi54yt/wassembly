@@ -105,7 +105,7 @@ es:
   activerecord:
     models:
       user: "usuario"
-      user session: "sesión"
+      user session: "la sesión"
       proposition: "propuesta"
       comment: "comentario"
       rating: "valoración"
@@ -121,6 +121,7 @@ es:
         last_name: "apellido"
         password_confirmation: "la confirmación de la contraseña"
         password: "la contraseña"
+        openid_identifier: "identificador de OpenId"
     errors:
       template:
         header:
@@ -222,3 +223,6 @@ es:
           email: email
           password: "contraseña"
           remember_me: "recordarme en este equipo"
+      openid:
+         identifier_not_found: "no encontrado en el sistema. ¿Has configurado tu cuenta para que use OpenId?"
+         error_auto_registering: "Error registrando una nueva cuenta mediante OpenId"

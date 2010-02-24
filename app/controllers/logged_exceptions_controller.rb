@@ -3,7 +3,7 @@ class LoggedExceptionsController < ApplicationController
   load_and_authorize_resource
   
   def index
-    @logged_exceptions = LoggedException.find_exceptions(params['page'], params['exception_class'], params['controller_name'], params['action_name'])
+    @logged_exceptions = LoggedException.find_exceptions(params['page'],params)
   end
   
   def show

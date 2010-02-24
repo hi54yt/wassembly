@@ -13,18 +13,11 @@ class LoggedException < ActiveRecord::Base
         :request         => controller.request
     end
     
-    def find_exceptions(page, exception_class, controller_name, action_name)
+    def find_exceptions(page, exception_conditions)
       conditions = {}
-      unless exception_class.blank?
-        conditions[:exception_class] = exception_class
+      [:exception_class, :controller_name, :action_name].each do |param|
+        conditions[param] = exception_conditions[param] if exception_conditions[param]
       end
-      unless controller_name.blank?
-        conditions[:controller_name] = controller_name
-      end
-      unless action_name.blank?
-        conditions[:action_name] = action_name
-      end
-      
       self.paginate(:per_page => 20, :page => page, :conditions => conditions, :order => 'created_at DESC')
     end
     

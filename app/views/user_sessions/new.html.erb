@@ -1,9 +1,24 @@
 <% title "Login" %>
 <% form_for @user_session do |f| %>
 	<%= f.error_messages %>
+	<div id="password_form">
+	  <fieldset id="user_fields">
+	  <legend>Entra con tu contraseña</legend>
+	  <p>
+	    <%= f.label :email, "Email" %><br />
+	    <%= f.text_field :email %>
+	  </p>
+	  <p>
+	    <%= f.label :password, "Contraseña" %><br />
+	    <%= f.password_field :password %>
+	  </p>
+	  <p><%= f.submit "Entrar", :id => "password_form_submit" %></p>
+	  </fieldset>
+	</div>
+	
 	<div id="openid_form">
 	  <fieldset id="openid_fields">
-		<legend>Usa OpenID para identificarte</legend> 
+		<legend>O usa OpenID para identificarte</legend> 
 		<p>
 			Si te has dado de alta en Wasamblea.org utilizando <a href="http://es.wikipedia.org/wiki/OpenID">OpenID</a>
 			sólo pincha en el sitio donde tienes la cuenta y se te redigirá allí.
@@ -32,21 +47,6 @@
 		  <%= f.text_field :openid_identifier %> <%= f.submit "Entrar"%>
 		</p>
 		</div>
-	  </fieldset>
-	</div>
-
-	<div id="password_form">
-	  <fieldset id="user_fields">
-	  <legend>O entra con tu contraseña</legend>
-	  <p>
-	    <%= f.label :email, "Email" %><br />
-	    <%= f.text_field :email %>
-	  </p>
-	  <p>
-	    <%= f.label :password, "Contraseña" %><br />
-	    <%= f.password_field :password %>
-	  </p>
-	  <p><%= f.submit "Entrar", :id => "password_form_submit" %></p>
 	  </fieldset>
 	</div>
 <% end %>

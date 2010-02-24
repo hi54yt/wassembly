@@ -33,10 +33,6 @@ class Proposition < ActiveRecord::Base
   named_scope :most_voted, :conditions => { :state => 'to_vote'}, :order => '(yes_count + no_count) DESC'
   named_scope :with_users, :include => :user
 
-  def vote_for_user(user)
-    votes.find_by_user(user.id)
-  end
-
   #Virtual attributes
   def votes_count
     yes_count + no_count

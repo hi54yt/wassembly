@@ -9,9 +9,6 @@ class User < ActiveRecord::Base
   
   acts_as_authentic do |c|
     c.login_field = 'email'
-    c.validate_login_field = false
-    # optional, but if a user registers by openid, he should at least share his email-address with the app
-    c.validate_email_field = false
     # fetch email by ax
     c.openid_required_fields = [:email,
                                 "http://axschema.org/namePerson/friendly",

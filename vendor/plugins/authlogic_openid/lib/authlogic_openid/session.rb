@@ -106,11 +106,11 @@ module AuthlogicOpenid
  
                 if ! attempted_record.save
                   puts attempted_record.to_yaml
-                  errors.add(:openid_identifier, "error auto-registering new openid account")
+                  errors.add(:openid_identifier, I18n.translate('authlogic.openid.error_auto_registering'))
                 end
                 return
               else
-                errors.add(:openid_identifier, "did not match any users in our database, have you set up your account to use OpenID?")
+                errors.add(:openid_identifier, I18n.translate('authlogic.openid.identifier_not_found'))
                 return
               end
             end

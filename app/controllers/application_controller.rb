@@ -23,10 +23,6 @@ class ApplicationController < ActionController::Base
   
   private
   
-  def local_request?
-    false
-  end
-    
   def guest_user?
     @current_user.nil? && flash.empty? && session[:announcement_hide_time].nil?
   end

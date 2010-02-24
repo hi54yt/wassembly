@@ -32,7 +32,7 @@ module ApplicationHelper
   end
   
   def include_javascript_editor_if_needed
-    javascript_include_merged :editor if params[:controller] == 'propositions' && (params[:action] == 'show' || params[:action] == 'new' )  
+    javascript_include_merged :editor if params[:controller] == 'propositions' && ['show','new','create'].include?(params[:action])
   end
       
 end
