@@ -45,7 +45,7 @@ namespace :db do
       proposition = Proposition.new
       user = User.find(:first, :order => 'rand()')
       proposition.user_id = user.id
-      proposition.title = Faker::Lorem.words(10).join(' ').titleize
+      proposition.title = Faker::Lorem.words(7).join(' ').titleize
       body = Faker::Lorem.paragraphs
       proposition.body = body.join("\n\n")
       proposition.created_at = rand(30).hours.ago

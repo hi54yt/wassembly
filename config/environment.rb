@@ -19,7 +19,6 @@ Rails::Initializer.run do |config|
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
-  config.gem "authlogic"
   config.gem "rubyist-aasm", :lib => "aasm", :source => "http://gems.github.com"
   config.gem "rdiscount", :source => "http://gemcutter.org" 
   config.gem 'will_paginate', :version => '~> 2.3.11', :source => 'http://gemcutter.org'
@@ -28,6 +27,8 @@ Rails::Initializer.run do |config|
   config.gem "ruby-openid", :lib => "openid", :source => "http://gems.github.com"
   config.gem "gchartrb", :lib => "google_chart"
   config.gem 'gravtastic', :version => '>= 2.1.0'
+  config.gem "authlogic"
+  config.gem "authlogic-oid", :lib => "authlogic_openid"
   #config.gem 'systemtimer'
   
   # Only load the plugins named here, in the order given (default is alphabetical).
