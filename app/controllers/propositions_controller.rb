@@ -19,7 +19,8 @@ class PropositionsController < ApplicationController
   
   def create
     @proposition.user = current_user
-    @proposition.ip = request.remote_ip  
+    @proposition.ip = request.remote_ip
+    @proposition.state = 'proposed' 
     if @proposition.save
       flash[:notice] = t 'flash.notice.create_proposition_success'
       redirect_to @proposition

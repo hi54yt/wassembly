@@ -13,6 +13,7 @@ class PropositionsControllerTest < ActionController::TestCase
       post :create, :proposition => {:title => p.title, :body => p.body}
       proposition = assigns(:proposition)
       assert_not_nil proposition
+      assert I18n.translate 'flash.notice.create_proposition_success' == flash[:notice]
       assert_redirected_to proposition_url(proposition)
     end
     

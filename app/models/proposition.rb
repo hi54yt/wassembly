@@ -2,7 +2,6 @@ require 'nokogiri'
 require 'rdiscount'
 
 class Proposition < ActiveRecord::Base
-  include AASM
   acts_as_rateable
 
   attr_accessible :title, :body
@@ -25,9 +24,9 @@ class Proposition < ActiveRecord::Base
   named_scope :limited, lambda { |num| { :limit => num } }
   named_scope :to_vote, :conditions => { :state => 'to_vote'}, :order => 'created_at DESC'
   named_scope :latest_proposed, :conditions => { :state => 'proposed'}, :order => 'created_at DESC'
-  named_scope :approved, :conditions => ["state = 'ended' AND yes_count > no_count"], :order => 'created_at DESC'
-  named_scope :rejected, :conditions => ["state = 'ended' AND yes_count < no_count"], :order => 'created_at DESC'
-  named_scope :approved_by_senate, :conditions => ["state = 'ended' AND senators_yes_count > senators_no_count"], :order => 'created_at DESC', :include => :user
+  named_scope :approved, :conditions => { :state => 'approved'}, :order => 'created_at DESC'
+  named_scope :rejected, :conditions => { :state => 'rejected'}, :order => 'created_at DESC'
+  named_scope :approved_by_senate, :conditions => ["state = 'approved' OR state = 'rejected' AND senators_yes_count > senators_no_count"], :order => 'created_at DESC', :include => :user
   named_scope :approved_by_verified_users, :conditions => ["state = 'ended' AND identity_verified_yes_count > identity_verified_no_count"], :order => 'created_at DESC', :include => :user
   named_scope :recent, :conditions => ["created_at >= ?", 10.weeks.ago]
   named_scope :most_voted, :conditions => { :state => 'to_vote'}, :order => '(yes_count + no_count) DESC'
@@ -80,8 +79,6 @@ class Proposition < ActiveRecord::Base
 
   def promote_if_interesting!
     if state == 'proposed' && interest >= APP_CONFIG['interest_threshold']
-      self.end_voting_at = 4.weeks.from_now
-      self.send_at(self.end_voting_at, :end_voting!)
       promote!
     end
   end
@@ -89,27 +86,21 @@ class Proposition < ActiveRecord::Base
   def to_param
     "#{id}-#{title.gsub(/\b\w{1,3}\b/,"").parameterize}" #Don't show words with less than 3 letters
   end
-
-  #Proposition State Machine
-
-  aasm_column :state
-  aasm_initial_state :proposed
-
-  aasm_state :proposed
-  aasm_state :discarded
-  aasm_state :to_vote
-  aasm_state :ended
-
-  aasm_event :discard do
-    transitions :to => :discarded, :from => [:proposed]
+  
+  def promote!
+    self.state = 'to_vote'
+    self.end_voting_at = 4.weeks.from_now
+    self.send_at(self.end_voting_at, :end_voting!)
+    save!
   end
-
-  aasm_event :promote do
-    transitions :to => :to_vote, :from => [:proposed]
-  end
-
-  aasm_event :end_voting do
-    transitions :to => :ended, :from => [:to_vote]
+  
+  def end_voting!
+    if yes_count > no_count
+      self.state = 'approved'
+    else
+      self.state = 'rejected'
+    end
+    save!
   end
 
   def proposed?

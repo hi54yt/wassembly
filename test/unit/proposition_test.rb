@@ -21,12 +21,24 @@ class PropositionTest < ActiveSupport::TestCase
     assert_equal p.state, 'to_vote'
   end
 
-  should "pass to ended state on voting end" do
+  should "be rejected if has more or equal no votes than yes votes at the of voting" do
     p = Factory.create(:proposition)
     p.promote!
+    p.yes_count = 6
+    p.no_count = 6
     p.end_voting!
 
-    assert_equal p.state, 'ended'
+    assert_equal p.state, 'rejected'
+  end
+  
+  should "be approved if has more yes votes than no votes at the end of voting" do
+    p = Factory.create(:proposition)
+    p.promote!
+    p.yes_count = 7
+    p.no_count = 6
+    p.end_voting!
+
+    assert_equal p.state, 'approved'
   end
 
   should "update voting_end_at field on promotion" do
@@ -39,10 +51,10 @@ class PropositionTest < ActiveSupport::TestCase
 
 
   should "select approved and rejected propositions" do
-    approved1 = Factory.create(:proposition, :state => 'ended', :yes_count => 100, :no_count => 20)
-    approved2 = Factory.create(:proposition, :state => 'ended', :yes_count => 100, :no_count => 20)
+    approved1 = Factory.create(:proposition, :state => 'approved', :yes_count => 100, :no_count => 20)
+    approved2 = Factory.create(:proposition, :state => 'approved', :yes_count => 100, :no_count => 20)
     to_vote = Factory.create(:proposition, :state => 'to_vote', :yes_count => 100, :no_count => 20)
-    rejected1 = Factory.create(:proposition, :state => 'ended', :yes_count => 10, :no_count => 200)
+    rejected1 = Factory.create(:proposition, :state => 'rejected', :yes_count => 10, :no_count => 200)
 
     approved = Proposition.approved
     assert_equal 2, approved.size
@@ -56,8 +68,8 @@ class PropositionTest < ActiveSupport::TestCase
   end
 
   should "select approved by senate" do
-    approved = Factory.create(:proposition, :state => 'ended', :senators_yes_count => 20, :senators_no_count => 15)
-    rejected = Factory.create(:proposition, :state => 'ended', :senators_yes_count => 10, :senators_no_count => 15)
+    approved = Factory.create(:proposition, :state => 'approved', :senators_yes_count => 20, :senators_no_count => 15)
+    rejected = Factory.create(:proposition, :state => 'rejected', :senators_yes_count => 10, :senators_no_count => 15)
     to_vote = Factory.create(:proposition, :state => 'to_vote', :senators_yes_count => 20, :senators_no_count => 15)
 
     approved_by_senate = Proposition.approved_by_senate
