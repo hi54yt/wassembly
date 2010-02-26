@@ -7,6 +7,8 @@ class AnnouncementsController < ApplicationController
       format.js
       format.html { redirect_to :back}
     end
+    rescue ActionController::RedirectBackError
+      redirect_to root_path
   end
 
   def index

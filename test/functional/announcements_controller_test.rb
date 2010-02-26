@@ -54,5 +54,10 @@ class AnnouncementsControllerTest < ActionController::TestCase
       get :show, :id => Factory.create(:announcement).to_param
       assert_response :success
     end
+    
+    should "hide announcements " do
+      get :hide, :format => 'html'
+      assert_redirected_to root_path
+    end
   end
 end
