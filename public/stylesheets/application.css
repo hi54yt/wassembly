@@ -210,6 +210,9 @@ p#motto {
 }
 
 #menu_nav li.active{
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
 	background-color: #086797;
 	-moz-box-shadow: 4px 3px 4px #ccc;
 	-webkit-box-shadow: 4px 3px 4px #ccc;
