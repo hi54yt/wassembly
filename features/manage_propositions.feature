@@ -5,11 +5,11 @@ Feature: Manage Propositions
   
   Scenario: Latest Propositions List
 	Given the following propositions exist
-	      | title               | state    | body           |
-	      | Lorem Ipsum         | proposed | dolor sit amet |
-	      | Other proposition   | proposed | More words     |
-	      | Proposition to vote | to_vote  | something      |
+	      | title               | state    | body           | interest |
+	      | Lorem Ipsum         | proposed | dolor sit amet | 1        |
+	      | Other proposition   | proposed | More words     | 1        |
+	      | Proposition to vote | to_vote  | something      | 1000     |
 	When I go to path "/propositions/latest"
 	Then I should see "Lorem Ipsum"
 	And I should see "Other proposition"
-	And I should not see "Proposition to vote"
+	And I should not see "Proposition to vote" within "#propositions_list"

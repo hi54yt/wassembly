@@ -13,3 +13,4 @@ Feature: Register new user
 	And I press "Guardar"
 	Then I should see "Registro completado!"
 	And I should see "Hemos enviado un email a tu dirección de correo para validar que es correcta."
+	And an email should be sent to pacopico@example.com

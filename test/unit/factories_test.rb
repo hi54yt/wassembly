@@ -18,6 +18,12 @@ class FactoriesTest < ActiveSupport::TestCase
       assert proposition.valid?
     end
     
+    should "create proposition in to_vote state" do
+      proposition = Factory.create(:proposition, :state => 'to_vote')
+      proposition = Proposition.find(proposition.id)
+      assert_equal 'to_vote', proposition.state
+    end
+    
     should "create valid announcements" do
       announcement = Factory.create(:announcement)
       assert announcement.valid?
