@@ -21,6 +21,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_url
   end
   
+  rescue_from ActionController::RedirectBackError do
+    redirect_to root_path
+  end
+  
   private
   
   def guest_user?
