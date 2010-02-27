@@ -2,16 +2,37 @@
 <div id="profile_gravatar">
 	<%= image_tag @user.gravatar_url %> <h1><%=h @user.screen_name %></h1>
 </div>
-<div id="user_details">
+<div id="user_details" class="module">
+	<div class="module_header">
+		<h4> Datos del usuario</h4>
+	</div>
+	<div class="module_body">
 	<ul>
 	  <li><strong>Reputación:</strong> <%= @user.karma %></li>
 	  <li><strong>Miembro desde:</strong> <%=l @user.created_at %></li>
-	
-	<% if is_admin? %>
-		<li><strong>Email:</strong> <%=h @user.email %> (Sólo visible para admins)</li>
-	<% end %>
 	</ul>
+	</div>
 </div>
+<% if is_admin? %>
+<div id="admin_details" class="module">
+	<div class="module_header">
+		<h4> Detalles del usuario (Sólo visible para admins)</h4>
+	</div>
+	<div class="module_body">
+		<ul>
+			<li><strong>Role:</strong> <%= @user.role %> </li>
+			<li><strong>Email:</strong> <%=h @user.email %> </li>
+			<li><strong>Cuenta activada:</strong> <%= @user.active %> </li>
+			<li><strong>Logueado por última vez:</strong> <%=l @user.current_login_at %> </li>
+			<li><strong>IP actual:</strong> <%= @user.current_login_ip %> </li>
+			<li><strong>Anterior IP:</strong> <%= @user.last_login_ip %> </li>
+			<li><strong>Número de logins:</strong> <%= @user.login_count %> </li>
+			<li><strong>Logins fallidos:</strong> <%= @user.failed_login_count %> </li>
+			<li><strong>Identidad verificada mediante DNIe:</strong> <%= @user.identity_verified %> </li>
+		</ul>
+	</div>
+<% end %>
+
 <% if can? :manage, User %>
 	<% content_for :sidebar do%>
 		<%= admin_links @user %>
