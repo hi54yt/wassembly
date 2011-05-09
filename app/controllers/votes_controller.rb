@@ -1,5 +1,6 @@
 class VotesController < ApplicationController
-  load_and_authorize_resource :nested => :proposition
+  load_and_authorize_resource :proposition
+  load_and_authorize_resource :vote, :through => :proposition
   
   def index
     if @proposition

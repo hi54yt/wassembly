@@ -1,7 +1,9 @@
 require 'test_helper'
 
 class RatingTest < ActiveSupport::TestCase
-  should_belong_to :rater, :rateable, :rateable_owner
+  should belong_to :rater
+  should belong_to :rateable
+  should belong_to :rateable_owner
   
   should "set a rateable owner before save" do
     rater = Factory(:user)

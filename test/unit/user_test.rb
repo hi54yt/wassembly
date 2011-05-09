@@ -2,9 +2,9 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   
-  should_have_many :votes
-  should_not_allow_values_for :email, "blah", "b lah"
-  should_allow_values_for :email, "a@b.com", "asdf@asdf.com"
+  should have_many :votes
+  should_not allow_value("blah").for(:email)
+  should allow_value("asdf@asdf.com").for(:email)
   
   should "save encrypted eid" do
     user = Factory.create(:user)

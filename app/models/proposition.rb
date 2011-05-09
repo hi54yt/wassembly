@@ -21,16 +21,14 @@ class Proposition < ActiveRecord::Base
   validates_length_of :title, :maximum=>80
 
   #named scopes
-  named_scope :limited, lambda { |num| { :limit => num } }
-  named_scope :to_vote, :conditions => { :state => 'to_vote'}, :order => 'created_at DESC'
-  named_scope :latest_proposed, :conditions => { :state => 'proposed'}, :order => 'created_at DESC'
-  named_scope :approved, :conditions => { :state => 'approved'}, :order => 'created_at DESC'
-  named_scope :rejected, :conditions => { :state => 'rejected'}, :order => 'created_at DESC'
-  named_scope :approved_by_senate, :conditions => ["state = 'approved' OR state = 'rejected' AND senators_yes_count > senators_no_count"], :order => 'created_at DESC', :include => :user
-  named_scope :approved_by_verified_users, :conditions => ["state = 'ended' AND identity_verified_yes_count > identity_verified_no_count"], :order => 'created_at DESC', :include => :user
-  named_scope :recent, :conditions => ["created_at >= ?", 10.weeks.ago]
-  named_scope :most_voted, :conditions => { :state => 'to_vote'}, :order => '(yes_count + no_count) DESC'
-  named_scope :with_users, :include => :user
+  scope :to_vote, where("state = 'to_vote'").order('created_at DESC')
+  scope :latest_proposed, where("state = 'proposed'").order('created_at DESC')
+  scope :approved, where("state = 'approved'").order('created_at DESC')
+  scope :rejected, where("state = 'rejected'").order('created_at DESC')
+  scope :approved_by_senate, where("state = 'approved' OR state = 'rejected' AND senators_yes_count > senators_no_count").order('created_at DESC').includes(:user)
+  scope :approved_by_verified_users, where("state = 'ended' AND identity_verified_yes_count > identity_verified_no_count").order('created_at DESC').includes(:user)
+  scope :recent, lambda { where("created_at >= ?", 10.weeks.ago) }
+  scope :most_voted, where("state = 'to_vote'").order('(yes_count + no_count) DESC')
 
   #Virtual attributes
   def votes_count
@@ -90,7 +88,7 @@ class Proposition < ActiveRecord::Base
   def promote!
     self.state = 'to_vote'
     self.end_voting_at = 4.weeks.from_now
-    self.send_at(self.end_voting_at, :end_voting!)
+    self.delay(:run_at => self.end_voting_at).end_voting!
     save!
   end
   

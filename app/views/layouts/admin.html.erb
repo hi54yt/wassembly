@@ -54,12 +54,12 @@
 		</div>
 		<div id="doc">
 			<div id="menu_nav">
-				<%= semantic_menu do |menu|
-				  menu.add "A votación", root_path
-				  menu.add "Últimas", latest_propositions_path
-				  menu.add "F.A.Q.", url_for(:controller => 'pages', :action => 'show', :permalink => 'faq')
-				  menu.add "Haz tu propuesta", new_proposition_path
-				end %>
+			  <ul class="menu">
+			    <%= menu_item "A votación", root_path %>
+			    <%= menu_item "Últimas", latest_propositions_path %>
+			    <%= menu_item "F.A.Q.", pages_path(:permalink => 'faq') %>
+			    <%= menu_item "Haz tu propuesta", new_proposition_path %>
+        </ul>
 			</div>
 	
 			<% unless flash.empty? %>

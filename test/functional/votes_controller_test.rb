@@ -15,7 +15,8 @@ class VotesControllerTest < ActionController::TestCase
     end
     
     should "see show vote page" do
-      get :show, :id => Factory.create(:vote).id
+      vote = Factory.create(:vote)
+      get :show, :proposition_id => vote.proposition.id, :id => vote.id
       assert_template ''
     end
     

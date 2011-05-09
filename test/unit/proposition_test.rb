@@ -2,7 +2,7 @@ require 'test_helper'
 
 class PropositionTest < ActiveSupport::TestCase
 
-  should_belong_to :user
+  should belong_to :user
 
 
   #State test methods

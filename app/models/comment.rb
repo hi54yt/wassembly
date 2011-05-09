@@ -1,3 +1,5 @@
+require 'acts_as_rateable'
+
 class Comment < ActiveRecord::Base
   acts_as_rateable
   
@@ -9,9 +11,8 @@ class Comment < ActiveRecord::Base
   attr_accessible :user_id, :proposition_id, :body, :ip
   validates_presence_of :user_id, :proposition_id, :body, :ip
   
-  named_scope :recent, :conditions => ["created_at >= ?", 2.days.ago]
-  named_scope :limited, lambda { |num| { :limit => num } }
-  named_scope :best, :order => 'interest DESC'
-  named_scope :with_users, :include => :user
+  scope :recent, where("created_at >= ?", 2.days.ago)
+  scope :limited, lambda { |num| { :limit => num } }
+  scope :best, order('interest DESC')
   
 end

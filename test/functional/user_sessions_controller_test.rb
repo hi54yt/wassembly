@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require 'test_helper'
 
 class UserSessionsControllerTest < ActionController::TestCase
@@ -17,7 +18,7 @@ class UserSessionsControllerTest < ActionController::TestCase
   
   def test_create_valid
     paco = users(:paco)
-    assert_nil @controller.session
+    assert @controller.session.empty?
     post :create, :user_session => {:email => 'paco@example.com', :password => 'secret'}
     assert_nil flash[:error]
     assert_equal "Inicio de sesión correcto!", flash[:notice]

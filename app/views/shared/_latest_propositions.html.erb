@@ -4,7 +4,7 @@
 	</div>
 	<div class="module_body">
 		<ul>
-			<% Proposition.latest_proposed.limited(5).each do |prop| %>
+			<% Proposition.latest_proposed.limit(5).each do |prop| %>
 			<li class="latest_prop">
 				<%= link_to h(prop.title), prop %> 
 				<span class="prop_date">hace <%= distance_of_time_in_words_to_now prop.created_at %></span>

@@ -5,23 +5,23 @@ class CommentsControllerTest < ActionController::TestCase
   
   context "Authenticated as an admin" do
     setup do
+      @comment = Factory.create(:comment)
       authenticate_as_admin
     end
     
     should "see comment index page" do
-      get :index
-      assert_template ''
+      get :index, :proposition_id => @comment.proposition.id
+      assert_template 'index'
     end
     
     should "view show comment page" do
-      get :show, :id => Factory(:comment)
-      assert_template ''
+      get :show, :proposition_id => @comment.proposition.id, :id => @comment.id
+      assert_template 'show'
     end
     
     should "be able to edit comment" do
-      comment = Factory(:comment)
-      get :edit, :proposition_id => comment.proposition.id, :id => comment.id
-      assert_template ''
+      get :edit, :proposition_id => @comment.proposition.id, :id => @comment.id
+      assert_template 'edit'
     end
     
     should "see error on create invalid comment" do
@@ -58,19 +58,6 @@ class CommentsControllerTest < ActionController::TestCase
       Comment.any_instance.stubs(:valid?).returns(true)
       post :create, :proposition_id => proposition.id
       assert_redirected_to proposition
-    end
-    
-    should "see error on update comment with invalid attributes" do
-      comment = Factory.create(:comment)
-      Comment.any_instance.stubs(:valid?).returns(false)
-      put :update, :proposition_id => comment.proposition.id, :id => comment.id
-      assert_template ''
-    end
-    
-    should "not be able to see comment list" do
-      get :index
-      assert_redirected_to root_url
-      assert_equal I18n.translate('flash.errors.not_authorized'), flash[:error]
     end
     
     should "not be able to destroy comment" do

@@ -6,12 +6,12 @@
 	<% end %>
 <% end %>
 
-<%= render '/shared/proposition', :object => @proposition %>
+<%= render  @proposition %>
 
 <% unless @comments.empty? %>
 	<div id="comments">
 		<h3>Comentarios</h3>
-		<%= render(:partial => "/shared/comment", :collection => @comments) %>
+		<%= render @comments %>
 		<div id="comments_pagination">
 			<%= will_paginate @comments %>
 		</div>
@@ -22,7 +22,7 @@
 <div id="create_comment">
 	<div id="add_comment_form">
 		<h3>Añadir comentario</h3>
-		<% form_for [@proposition, @proposition.comments.build] do |f| %>
+		<%= form_for [@proposition, @proposition.comments.build] do |f| %>
 			<p>	
 		    	<%= f.text_area :body, :cols => 75, :rows => 14, :class => 'markdown', :id=>"wmd-input" %> <br/>
 				<%= f.submit "Enviar" %>

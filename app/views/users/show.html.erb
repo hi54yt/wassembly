@@ -23,7 +23,13 @@
 			<li><strong>Role:</strong> <%= @user.role %> </li>
 			<li><strong>Email:</strong> <%=h @user.email %> </li>
 			<li><strong>Cuenta activada:</strong> <%= @user.active %> </li>
-			<li><strong>Logueado por última vez:</strong> <%=l @user.current_login_at %> </li>
+			<li><strong>Logueado por última vez:</strong> 
+			  <% if @user.current_login_at %>
+			    <%=l @user.current_login_at %>
+			  <% else %>
+			    Nunca
+			  <% end %>
+			</li>
 			<li><strong>IP actual:</strong> <%= @user.current_login_ip %> </li>
 			<li><strong>Anterior IP:</strong> <%= @user.last_login_ip %> </li>
 			<li><strong>Número de logins:</strong> <%= @user.login_count %> </li>

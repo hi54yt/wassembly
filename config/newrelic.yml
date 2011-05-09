@@ -30,7 +30,7 @@ common: &default_settings
   # to map this instance into multiple apps, like "AJAX Requests" and
   # "All UI" then specify a semicolon separated list of up to three
   # distinct names.  If you comment this out, it defaults to the 
-  # capitalized RAILS_ENV (i.e., Production, Staging, etc)
+  # capitalized Rails.env (i.e., Production, Staging, etc)
   app_name: My Application
 
   # When "true", the agent collects performance data about your 
@@ -181,7 +181,7 @@ common: &default_settings
 # Application Environments
 # ------------------------------------------
 # Environment specific settings are in this section.
-# For Rails applications, RAILS_ENV is used to determine the environment
+# For Rails applications, Rails.env is used to determine the environment
 # For Java applications, pass -Dnewrelic.environment <environment> to set
 # the environment
 

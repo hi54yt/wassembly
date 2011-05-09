@@ -1,8 +1,10 @@
+# encoding: UTF-8
 class CommentsController < ApplicationController
-  load_and_authorize_resource :nested => :proposition
+  load_resource :proposition
+  load_and_authorize_resource :comment, :through => :proposition
   
   def index
-    @comments = Comment.paginate :per_page => 10, :page => params['page'], :order => 'created_at DESC'
+    @comments = Comment.all.paginate :per_page => 10, :page => params['page'], :order => 'created_at DESC'
   end
   
   def show
@@ -26,7 +28,7 @@ class CommentsController < ApplicationController
       flash[:notice] = "Successfully updated comment."
       redirect_to @proposition
     else
-      render :action => 'edit'
+      render 'edit'
     end
   end
   

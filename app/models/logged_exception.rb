@@ -4,13 +4,12 @@ class LoggedException < ActiveRecord::Base
     def create_from_exception(controller, exception, data)
       message = exception.message.inspect
       message << "\n* Extra Data\n\n#{data}" unless data.blank?
-      create! \
-        :exception_class => exception.class.name,
-        :controller_name => controller.controller_name,
-        :action_name     => controller.action_name,
-        :message         => message,
-        :backtrace       => exception.backtrace,
-        :request         => controller.request
+      create! :exception_class => exception.class.name,
+              :controller_name => controller.controller_name,
+              :action_name     => controller.action_name,
+              :message         => message,
+              :backtrace       => exception.backtrace,
+              :request         => controller.request
     end
     
     def find_exceptions(page, exception_conditions)
@@ -18,7 +17,7 @@ class LoggedException < ActiveRecord::Base
       [:exception_class, :controller_name, :action_name].each do |param|
         conditions[param] = exception_conditions[param] if exception_conditions[param]
       end
-      self.paginate(:per_page => 20, :page => page, :conditions => conditions, :order => 'created_at DESC')
+      all.paginate(:per_page => 20, :page => page, :conditions => conditions, :order => 'created_at DESC')
     end
     
     def find_exception_class_names
@@ -26,7 +25,7 @@ class LoggedException < ActiveRecord::Base
     end
     
     def find_exception_controllers_and_actions
-      find(:all, :select => "DISTINCT controller_name, action_name", :order => "controller_name, action_name").collect(&:controller_action)
+      select("DISTINCT controller_name, action_name").order("controller_name, action_name").to_a.collect(&:controller_action)
     end
     
     def host_name
@@ -53,7 +52,7 @@ class LoggedException < ActiveRecord::Base
         "* URL:#{" #{request.method.to_s.upcase}" unless request.get?} #{request.protocol}#{request.env["HTTP_HOST"]}#{request.request_uri}",
         "* Format: #{request.format.to_s}",
         "* Parameters: #{request.parameters.inspect}",
-        "* Rails Root: #{rails_root}"
+        "* Rails Root: #{Rails.root}"
       ] * "\n")
     end
   end
@@ -63,14 +62,12 @@ class LoggedException < ActiveRecord::Base
   end
 
   private
-    @@rails_root      = Pathname.new(RAILS_ROOT).cleanpath.to_s
-    @@backtrace_regex = /^#{Regexp.escape(@@rails_root)}/
 
-    def sanitize_backtrace(trace)
-      trace.collect { |line| Pathname.new(line.gsub(@@backtrace_regex, "[RAILS_ROOT]")).cleanpath.to_s }
-    end
-
-    def rails_root
-      @@rails_root
-    end
+  def sanitize_backtrace(trace)
+    trace.collect { |line| Pathname.new(line.gsub(LoggedException.backtrace_regex, "[RAILS ROOT]")).cleanpath.to_s }
+  end
+  
+  def self.backtrace_regex
+    @backtrace_regex ||= /^#{Regexp.escape(Rails.root)}/
+  end
 end

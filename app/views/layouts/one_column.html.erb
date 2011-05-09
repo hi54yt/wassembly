@@ -14,7 +14,7 @@
 		<% unless current_announcements.empty? %>
 		<!-- Announcements -->
 		<div id="announcement" class="shadow">
-		  <p class="close_announcement"><%= link_to_remote "X", :url => "/javascripts/hide_announcement.js" %></p>
+		  <p class="close_announcement"><%= link_to "X", :url => "/javascripts/hide_announcement.js", :remote => true %></p>
 		  <% for announcement in current_announcements %>
 		    <p><%= announcement.message %></p>
 		  <% end %>

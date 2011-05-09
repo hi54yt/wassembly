@@ -10,7 +10,7 @@ class AnnouncementsController < ApplicationController
   end
 
   def index
-    @announcements = Announcement.paginate :per_page => 10, :page => params['page'], :order => 'created_at DESC'
+    @announcements = Announcement.all.paginate :per_page => 10, :page => params['page'], :order => 'created_at DESC'
   end
 
   def show

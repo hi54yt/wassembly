@@ -58,8 +58,8 @@ class UsersControllerTest < ActionController::TestCase
       user = Factory.build(:user, :active => 0)
       post :create, :user => {:email => user.email, :password => 'secret', :password_confirmation => 'secret', :username => user.username}
       assert_redirected_to root_url
-      assert I18n.translate('flash.info.registration_completed'), flash[:notice]
-      assert !ActionMailer::Base.deliveries.empty?
+      assert_equal "#{I18n.translate 'flash.notice.registration_completed'} #{I18n.translate 'flash.notice.email_sent' }", flash[:notice]
+      assert ActionMailer::Base.deliveries.size > 0
     end
   end
 end

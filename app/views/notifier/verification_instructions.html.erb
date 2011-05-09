@@ -1,6 +1,6 @@
 Gracias por registrarte en Wasamblea.org. Por favor, pincha en el siguiente enlace para verificar tu dirección de email:
 
-<%= @verification_url %>
+<%= user_verification_url(@user.perishable_token) %>
 
 Si el enlace de arriba no funciona, prueba a copiarlo y pegarlo en tu navegador. Si continuas teniendo problemas, por favor ponte en contacto con nosotros.
 

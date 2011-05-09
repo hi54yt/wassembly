@@ -1,9 +1,9 @@
 class Rating < ActiveRecord::Base
 
-  named_scope :with_rater,    lambda { |*args| {:conditions => ["rater_id = ? ", args.first.id]} }
-  named_scope :for_rateable, lambda { |*args| {:conditions => ["rateable_id = ? AND rateable_type = ?", args.first.id, args.first.type.name]} }
-  named_scope :recent,       lambda { |*args| {:conditions => ["created_at > ?", (args.first || 2.weeks.ago).to_s(:db)]} }
-  named_scope :descending, :order => "created_at DESC"
+  scope :with_rater,   lambda { |rater_id| where("rater_id = ? ", rater_id) }
+  scope :for_rateable, lambda { |rateable|  where("rateable_id = ? AND rateable_type = ?", rateable.id, rateable.type.name) }
+  scope :recent,       lambda { where("created_at > ?", (args.first || 2.weeks.ago) )}
+  scope :descending, order("created_at DESC")
 
   # NOTE: Votes belong to the "rateable" interface, and also to raters
   belongs_to :rateable, :polymorphic => true, :touch => true

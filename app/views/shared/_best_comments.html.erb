@@ -4,7 +4,7 @@
   </div>
   <div class="module_body">
 	<ul>
-	  	<% Comment.best.with_users.recent.limited(5).each do |comment| %>
+	  	<% Comment.best.includes(:user).recent.limit(5).each do |comment| %>
 		    <li class="comment_best">
 				<%= link_to truncate(h(comment.body), :length => 40), proposition_url(comment.proposition, :anchor => "comment#{comment.id}") %><br/>
 				<span class="comment_author">por <%= link_to h(comment.user.screen_name), comment.user %></span>, 

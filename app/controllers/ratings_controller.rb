@@ -1,6 +1,8 @@
+# encoding: UTF-8
 class RatingsController < ApplicationController
   layout "admin"
-  load_and_authorize_resource :nested => :proposition
+  load_resource :proposition
+  authorize_resource :rating
   
   def index
     if @proposition
@@ -30,11 +32,11 @@ class RatingsController < ApplicationController
         format.html do
           flash[:notice] = "Valoración guardada"
           rateable = (@rating.rateable.respond_to? :proposition) ? @rating.rateable.proposition : @rating.rateable
-          redirect_to url_for rateable
+          redirect_to rateable
         end
       end
     else
-      render :action => 'new'
+      render 'new'
     end
   end
   
@@ -48,7 +50,7 @@ class RatingsController < ApplicationController
       flash[:notice] = "Successfully updated rating."
       redirect_to @rating
     else
-      render :action => 'edit'
+      render 'edit'
     end
   end
   

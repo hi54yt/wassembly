@@ -1,7 +1,7 @@
 <div class="admin_section rounded">
 	<div class="admin_hd">
 	<p>
-		<%= resource.new_record? ? "Nuevo #{resource.class.human_name}" : "#{resource.class.human_name} ##{resource.id}" %>
+		<%= resource.new_record? ? "Nuevo #{resource.class.model_name.human}" : "#{resource.class.model_name.human} ##{resource.id}" %>
 	</p>
 	</div>
 	<div class="admin_bd">

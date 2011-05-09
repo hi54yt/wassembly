@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
   has_many  :votes
   
   attr_accessible :username, :email, :password, :password_confirmation, :first_name, :last_name, :show_real_name, :openid_identifier
-  is_gravtastic!
+  
+  include Gravtastic
+  gravtastic
   
   acts_as_authentic do |c|
     c.login_field = 'email'
@@ -27,11 +29,10 @@ class User < ActiveRecord::Base
   
   validates_format_of   :email, 
                         :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i,
-                        :message    => 'l
-                        a dirección de email debe ser válida'
+                        :message    => 'la dirección de email debe ser válida'
   
-  before_validation_on_create :set_default_role
-  after_create :deliver_verification_instructions!                     
+  before_validation :set_default_role, :on => :create
+  after_create :send_verification_instructions!                     
   
   def name
     [first_name, last_name].compact.join(' ')
@@ -43,7 +44,7 @@ class User < ActiveRecord::Base
   end
 
   def vote_for(proposition)
-    votes.find(:first, :conditions => ["proposition_id = ? ", proposition.id])
+    votes.where("proposition_id = ? ", proposition.id).first
   end
   
   def role?(a_role)
@@ -55,13 +56,13 @@ class User < ActiveRecord::Base
   end
   
   def recent_ratings_for(other_user, num_days = 60)
-    Rating.count(:conditions => ["rater_id = ? AND rateable_owner_id = ? AND created_at > ?", self.id, other_user.id, num_days.days.ago])
+    Rating.where("rater_id = ? AND rateable_owner_id = ? AND created_at > ?", self.id, other_user.id, num_days.days.ago).count
   end
   
-  def deliver_verification_instructions!
+  def send_verification_instructions!
     unless self.active?
       reset_perishable_token!  
-      Notifier.deliver_verification_instructions(self)
+      Notifier.verification_instructions(self).deliver
     end  
   end
   

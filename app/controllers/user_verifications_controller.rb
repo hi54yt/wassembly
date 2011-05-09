@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class UserVerificationsController < ApplicationController
   def show
     @user = User.find_by_perishable_token(params[:id])

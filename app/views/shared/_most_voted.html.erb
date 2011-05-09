@@ -4,7 +4,7 @@
   </div>
   <div class="module_body">
 	<ul>
-	  	<% Proposition.most_voted.recent.limited(5).each do |prop| %>
+	  	<% Proposition.most_voted.recent.limit(5).each do |prop| %>
 		    <li class="latest_prop">
 				<%= link_to h(prop.title), prop %> 
 				<span class="num_votes"> <%= pluralize prop.votes_count, 'voto' %></span>

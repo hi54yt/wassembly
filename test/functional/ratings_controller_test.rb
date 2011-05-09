@@ -16,7 +16,7 @@ class RatingsControllerTest < ActionController::TestCase
 
     should "view show" do
       get :show, :id => Factory.create(:rating).id
-      assert_template 'show'
+      assert_template ''
     end
 
     should "view new" do

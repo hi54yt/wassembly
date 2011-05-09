@@ -1,22 +1,39 @@
-ActionController::Routing::Routes.draw do |map|  
-  map.resources :propositions, 
-                :has_many => [:comments, :votes, :ratings], 
-                :collection => { :latest => :get, :voting => :get}
+Wassembly::Application.routes.draw do
+  resources :propositions do
+    collection do
+      get :latest
+      get :voting
+    end
+    resources :votes
+    resources :comments
+  end
+
+  match 'help/:permalink' => 'pages#show', :as => :static
+  resources :ratings
+  resources :users
+  resources :ratings
+  resources :user_sessions
+  resources :user_verifications
+  resources :identity_verifications
+  resources :pages
+  resources :announcements do
+    collection do
+      get :hide
+    end
+  end
+
+  resources :logged_exceptions do
+    collection do
+      delete :destroy_all
+    end
+  end
   
-  map.static 'help/:permalink', :controller => 'pages', :action => 'show'
-  map.resources :ratings
-  map.resources :users
-  map.resources :ratings
-  map.resources :user_sessions
-  map.resources :user_verifications
-  map.resources :pages
-  map.resources :announcements, :collection => {:hide => :get}
-  map.resources :logged_exceptions, :collection => { :destroy_all => :delete }
+  resources :comments
+  resources :votes
   
-  map.root :controller => 'propositions', :action => 'voting'
-  
-  map.admin "admin", :controller => 'admin', :action => 'index'
-  map.login "login", :controller => "user_sessions", :action => "new"
-  map.logout "logout", :controller => "user_sessions", :action => "destroy"
-  map.connect ":controller/:action.:format"
+  root :to => 'propositions#voting'
+  match 'admin' => 'admin#index', :as => :admin
+  match 'login' => 'user_sessions#new', :as => :login
+  match 'logout' => 'user_sessions#destroy', :as => :logout
+  match ':controller/:action.:format' => '#index'
 end

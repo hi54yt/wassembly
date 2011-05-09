@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class IdentityVerificationsController < ApplicationController
   include Tractis::IdentityVerifications
   

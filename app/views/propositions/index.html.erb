@@ -1,7 +1,7 @@
 <% title @title || 'Propuestas' %>
 
 <div id="propositions_list">
-	<%= render(:partial => "/shared/proposition", :collection  => @propositions) %>
+	<%= render @propositions %>
 	<%= will_paginate @propositions %>
 </div>
 

@@ -6,8 +6,8 @@
 	<meta name="description" content="Wasamblea.org es un Parlamento virtual donde los ciudadanos pueden presentar cualquier prouesta, discutirla y votarla. "/>
 	<meta name="keywords" content="democracia, parlamento, asamblea, democracia directa" />
 	<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
-	<%= stylesheet_link_merged :base %>
-	<%= stylesheet_link_tag 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css' %>	
+	<%=raw stylesheet_link_merged :base %>
+	<%=raw stylesheet_link_tag 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css' %>	
 	<%= yield(:head) %>
 </head>
 
@@ -53,18 +53,18 @@
 		</div>
 		<div id="doc">
 			<div id="menu_nav">
-				<%= semantic_menu do |menu|
-				  menu.add "A votación", root_path
-				  menu.add "Últimas propuestas", latest_propositions_path
-				  menu.add "F.A.Q.", url_for(:controller => 'pages', :action => 'show', :permalink => 'faq')
-				  menu.add "Haz tu propuesta", new_proposition_path
-				end %>
+				<ul class="menu">
+			    <%= menu_item "A votación", root_path %>
+			    <%= menu_item "Últimas", latest_propositions_path %>
+			    <%= menu_item "F.A.Q.", pages_path(:permalink => 'faq') %>
+			    <%= menu_item "Haz tu propuesta", new_proposition_path %>
+        </ul>
 			</div>
 	
 			<% unless flash.empty? %>
 			<div id="flash_message">
 				<%- flash.each do |name, msg| -%>
-				<%= content_tag :div, msg, :id => "flash_#{name}", :class => "#{name} shadow" %>
+				  <%= content_tag :div, msg, :id => "flash_#{name}", :class => "#{name} shadow" %>
 				<%- end -%>
 			</div>
 			<% end %>
@@ -126,9 +126,9 @@
 		<hr class="separator"/>
 	</div>
 	<div id="dialog"/> <!-- To show dialogs -->
-	<%= javascript_include_tag :defaults %>
-	<%= javascript_include_merged :base %>
-	<%= include_javascript_editor_if_needed %>
+	<%= javascript_include_tag 'jquery', 'jquery.form', 'jrails',  %>
+	<%=raw javascript_include_merged :base %>
+	<%=raw include_javascript_editor_if_needed %>
 	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js"></script>
 	<script type="text/javascript">
 	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

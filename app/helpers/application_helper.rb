@@ -1,13 +1,12 @@
 require 'rdiscount'
-# Methods added to this helper will be available to all templates in the application.
+
 module ApplicationHelper
-  
   def m(text)
-    RDiscount.new(text, :smart, :filter_html).to_html.html_safe!
+    RDiscount.new(text, :smart, :filter_html).to_html.html_safe
   end
   
   def m_with_html(text)
-    RDiscount.new(text, :smart).to_html.html_safe!
+    RDiscount.new(text, :smart).to_html.html_safe
   end
   
   def is_admin?
@@ -27,6 +26,12 @@ module ApplicationHelper
     render :partial => '/shared/rating', :locals => { :rating => rating, :rateable => rateable }
   end
   
+  def menu_item(text, path)
+    content_tag :li, :class => current_page?(path) ? 'active' : '' do
+      link_to text, path
+    end
+  end
+  
   def current_announcements
     @current_announcements ||= Announcement.current_announcements(session[:announcement_hide_time])
   end
@@ -34,5 +39,4 @@ module ApplicationHelper
   def include_javascript_editor_if_needed
     javascript_include_merged :editor if params[:controller] == 'propositions' && ['show','new','create'].include?(params[:action])
   end
-      
 end
