@@ -528,3 +528,21 @@ p.close_announcement{
 #user_list{
 	width: 500px;
 }
+
+#page_content{
+  margin-top: 2em;
+}
+
+#page_content h2{
+  font-weight: bold;
+  margin-bottom: 1em;
+  font-size: 1.3em;
+}
+
+#page_content li{
+  margin-left: 2em;
+}
+
+#page_content p{
+  margin-bottom: 1.5em;
+}

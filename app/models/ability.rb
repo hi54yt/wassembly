@@ -21,8 +21,11 @@ class Ability
       can [:index, :show, :latest, :voting], [Proposition]
       can :show, User
       can :index, Vote
-      can :create, [User, UserSession]
-      can :show, [Page, User, Announcement]
+      can :create, User
+      can :create, UserSession
+      can :show, Page
+      can :show, User
+      can :show, Announcement
     end
   end
 end

@@ -9,9 +9,9 @@ class ApplicationController < ActionController::Base
   #Catch unauthorized access exceptions
   rescue_from CanCan::AccessDenied do |exception|
     if current_user.nil?
-      flash[:error] = t('flash.errors.anonymous_not_authorized')
+      flash[:error] = t('flash.errors.anonymous_not_authorized').html_safe
     else
-      flash[:error] = t('flash.errors.not_authorized')
+      flash[:error] = t('flash.errors.not_authorized').html_safe
     end
     redirect_to root_url
   end
