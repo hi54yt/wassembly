@@ -50,13 +50,13 @@ class PropositionsController < ApplicationController
   #Custom propositions actions
   def latest
     @title = "Últimas propuestas"
-    @propositions = Proposition.latest_proposed.includes(:users).paginate :per_page => 10, :page => params['page']
+    @propositions = Proposition.latest_proposed.includes(:user).paginate :per_page => 10, :page => params['page']
     render :action => 'index'
   end
   
   def voting
     @title = "Propuestas a votación"
-    @propositions = Proposition.to_vote.includes(:users).paginate :per_page => 10, :page => params['page']
+    @propositions = Proposition.to_vote.includes(:user).paginate :per_page => 10, :page => params['page']
     render :action => 'index'
   end
 end

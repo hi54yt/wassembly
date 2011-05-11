@@ -10,7 +10,7 @@ gem 'cancan'
 gem 'ruby-openid', :require => 'openid'
 gem 'gchartrb', :require => 'google_chart'
 gem 'authlogic', :git => 'git://github.com/binarylogic/authlogic.git'
-gem 'authlogic-oid', :require => 'authlogic_openid'
+gem "authlogic-oid", :require => "authlogic_openid", :git => "git://github.com/binaryfeed/authlogic_openid.git"
 gem 'acts_as_rateable'
 gem 'delayed_job', :git => 'git://github.com/collectiveidea/delayed_job.git'
 gem 'rack-openid', '>=0.2.1', :require => 'rack/openid'

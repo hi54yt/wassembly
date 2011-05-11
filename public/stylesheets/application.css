@@ -21,6 +21,10 @@ body{
 	border-bottom:1px solid #ccc;
 }
 
+#user_fields{
+  float: left;
+}
+
 a{ 
 	text-decoration: none;	
 }
@@ -107,7 +111,7 @@ blockquote{
 }
 
 #left_column{
-	margin: 5px 335px 0px 0px;
+  width: 600px;
 	padding: 0px 30px;
 }
 

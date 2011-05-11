@@ -59,7 +59,11 @@ span.field_error{
 .error,
 .errorExplanation,
 .notice, 
-.success    { padding: .8em; margin: 1em; border: 2px solid #ddd; }
+.success    { padding: .8em; margin: 1em; border: 2px solid #ddd;}
+
+.error li {
+  list-style: none;
+}
 
 .error,
 .errorExplanation { background: white ; color: #cc4444; border-color: #cc4444; }

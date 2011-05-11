@@ -7,7 +7,7 @@
 			<% if current_page? proposition %>
 				<%=m proposition.body %>
 			<% else %>
-				<%= proposition.summary %>
+				<%=raw proposition.summary %>
 			<% end %>
 		</div>
 		<div class="prop_details">

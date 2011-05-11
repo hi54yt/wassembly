@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/binaryfeed/authlogic_openid.git
+  revision: 051abde036adb4ccb5b388dd2ea9e99a81a8c06c
+  specs:
+    authlogic-oid (1.0.4)
+      authlogic
+
+GIT
   remote: git://github.com/binarylogic/authlogic.git
   revision: 29846f55afc1003ee2a001d3e1dd094341dd67cf
   specs:
@@ -46,8 +53,6 @@ GEM
     activesupport (3.0.7)
     acts_as_rateable (2.0.1)
     arel (2.0.9)
-    authlogic-oid (1.0.4)
-      authlogic
     builder (2.1.2)
     cancan (1.6.4)
     cucumber (0.10.2)
@@ -127,7 +132,7 @@ PLATFORMS
 DEPENDENCIES
   acts_as_rateable
   authlogic!
-  authlogic-oid
+  authlogic-oid!
   cancan
   cucumber-rails
   database_cleaner

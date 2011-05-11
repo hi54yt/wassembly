@@ -1,0 +1,24 @@
+<fieldset id="openid_fields">
+  <legend>O usa una de tus cuentas para identificarte</legend> 
+  <p>
+    Si tienes una cuenta en alguno de estos sitios, puedes utilizar <a href="http://es.wikipedia.org/wiki/OpenID">OpenID</a>
+    para identificarte en Wasamblea.org y así no tendrás que recordar otra contraseña.
+  </p>
+  <div id="openid_links">
+    <p>
+      Sólo pincha en la cuenta con la que quieres identificarte y se te redigirá al sitio donde tienes tu cuenta. 
+      Una vez que te hayas identificada allí volverás a Wasamblea.org.
+    </p>
+    <ul id="identity_providers">
+      <li id="openid" class="id_provider"><a href="#openid"><span>OpenId</span> <img src="/images/openid.gif" alt="Conectar con OpenId"/></a></li>
+      <li id="google" class="id_provider"><a href="#google"><span>Google</span> <img src="/images/google.gif" alt="Conectar con Google"/></a></li>
+      <li id="yahoo" class="id_provider"><a href="#yahoo"><span>Yahoo</span> <img src="/images/yahoo.gif" alt="Conectar con Yahoo!"/></a></li>
+    </ul>
+  </div>
+  <div id="openid_field">
+    <p>
+      <%= f.label :openid_identifier, "Idetificador de OpenId" %><br />
+      <%= f.text_field :openid_identifier %> <%= f.submit "Registrarme"%>
+    </p>
+  </div>
+</fieldset>
