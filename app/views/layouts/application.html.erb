@@ -6,7 +6,7 @@
 	<meta name="description" content="Wasamblea.org es un Parlamento virtual donde los ciudadanos pueden presentar cualquier prouesta, discutirla y votarla. "/>
 	<meta name="keywords" content="democracia, parlamento, asamblea, democracia directa" />
 	<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
-	<%=raw stylesheet_link_merged :base %>
+	<%= stylesheet_link_tag :all, :cache => true %>
 	<%=raw stylesheet_link_tag 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css' %>	
 	<%= yield(:head) %>
 </head>
@@ -126,10 +126,10 @@
 		<hr class="separator"/>
 	</div>
 	<div id="dialog"/> <!-- To show dialogs -->
-	<%= javascript_include_tag 'jquery', 'jquery.form', 'jrails',  %>
-	<%=raw javascript_include_merged :base %>
-	<%=raw include_javascript_editor_if_needed %>
-	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js"></script>
+	<%= javascript_include_tag 'jquery.min', 'jquery.min', 'rails', 'jquery-ui.min', 'application', 'plugins/jquery.form', :cache => true %>
+	<%= javascript_include_tag 'plugins/jquery.elastic', 'plugins/showdown', 'plugins/markedit.lang.es', 'plugins/jquery.markedit', :cache => true %>
+	<%= javascript_include_tag "http://s7.addthis.com/js/250/addthis_widget.js" %>
+	
 	<script type="text/javascript">
 	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));

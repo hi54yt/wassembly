@@ -15,6 +15,7 @@ gem 'acts_as_rateable'
 gem 'delayed_job', :git => 'git://github.com/collectiveidea/delayed_job.git'
 gem 'rack-openid', '>=0.2.1', :require => 'rack/openid'
 gem 'gravtastic'
+gem "jquery-rails"
 
 group :test do
   gem "shoulda"

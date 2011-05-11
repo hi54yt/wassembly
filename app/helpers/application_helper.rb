@@ -35,8 +35,4 @@ module ApplicationHelper
   def current_announcements
     @current_announcements ||= Announcement.current_announcements(session[:announcement_hide_time])
   end
-  
-  def include_javascript_editor_if_needed
-    javascript_include_merged :editor if params[:controller] == 'propositions' && ['show','new','create'].include?(params[:action])
-  end
 end
